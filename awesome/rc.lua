@@ -1,5 +1,5 @@
 -- Basic os tools needed
-os.execute("nm-applet &")
+os.execute("killall nm-applet; nm-applet &")
 os.execute("gnome-settings-daemon &")
 os.execute("gnome-power-manager &")
 os.execute("gnome-volume-manager &")
@@ -19,6 +19,17 @@ require("wicked")
 
 -- Load Debian menu entries
 require("debian.menu")
+
+-- Battery
+require("battery")
+
+batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" })
+
+bat_clo = battery.batclosure("BAT0")
+batterywidget.text = "[...]" 
+battimer = timer({ timeout = 60 })
+battimer:add_signal("timeout", function() batterywidget.text = bat_clo() end)
+battimer:start()
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
@@ -162,6 +173,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
+	batterywidget,
         s == 1 and mysystray or nil,
         -- cputemp,
         mytasklist[s],
@@ -359,11 +371,4 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
 
--- wicked.register(cputemp, function ()
---                            local f = io.popen([[acpi -t | sed -e "s/.* \(.*\) degrees .*/\1/g"]])
---                            local l = f:read()
---                            f:close()
---                            return l .. "°C"
---                          end, "$1", 5)

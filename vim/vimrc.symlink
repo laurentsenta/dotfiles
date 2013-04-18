@@ -1,0 +1,61 @@
+set nocompatible               " be iMproved
+filetype off                   " required by vundle
+
+" ==== No Menus ===
+:set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=l  "remove left-hand scroll bar
+:set guioptions-=b
+
+:set number         "line numbering
+
+" === Navigation ===
+" Relative numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+" ==== Vundle ====
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+" Bundles:
+" * github
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/nerdtree'
+
+" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" * vim-scripts repos
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+
+" * non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required by vundle
+
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+" === solarized ===
+syntax enable
+set background=dark
+colorscheme solarized
+
+

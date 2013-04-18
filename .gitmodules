@@ -1,3 +1,6 @@
 [submodule "system/gnome-terminal-colors-solarized"]
 	path = system/gnome-terminal-colors-solarized
 	url = git://github.com/sigurdga/gnome-terminal-colors-solarized.git
+[submodule "vim/vim.symlink/bundle/vundle"]
+	path = vim/vim.symlink/bundle/vundle
+	url = https://github.com/gmarik/vundle.git

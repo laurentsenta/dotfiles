@@ -34,6 +34,8 @@ apt-get install vim vim-gtk
 apt-get install emacs
 apt-get install zsh
 
+./system/gnome-terminal-colors-solarized/solarize
+
 apt-get install ipython python-pip python-dev
 apt-get install python3
 

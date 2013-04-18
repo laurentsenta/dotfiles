@@ -9,3 +9,5 @@ function cdls() {
 }
 alias cd=cdls
 
+alias hibernate="sudo pm-hibernate"
+

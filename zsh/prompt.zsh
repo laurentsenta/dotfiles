@@ -48,12 +48,7 @@ need_push () {
 }
 
 rb_prompt(){
-  if (( $+commands[rbenv] ))
-  then
-	  echo "%{$fg_bold[yellow]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
-	else
-	  echo ""
-  fi
+  echo "%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg_bold[green]%}%m%{$reset_color%}"
 }
 
 # This keeps the number of todos always available the right hand side of my
@@ -79,9 +74,11 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
+smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+
 export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
+  export RPROMPT="%{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
 }
 
 precmd() {

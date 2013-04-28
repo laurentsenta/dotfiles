@@ -38,6 +38,10 @@ Bundle 'gmarik/vundle'
 " * github
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/nerdtree'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'kien/ctrlp.vim'
+Bundle 'nvie/vim-flake8'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -63,4 +67,25 @@ filetype plugin indent on     " required by vundle
 syntax enable
 set background=dark
 colorscheme solarized
+
+" === shortcut ===
+:map <C-Q> :NERDTreeToggle<CR>
+:imap <C-Q> <ESC>:NERDTreeToggle<CR>a
+:map <C-X> "+
+:map <C-S> :w<CR>
+:imap <C-S> <ESC>:w<CR>a
+
+autocmd BufWritePre * :%s/\s\+$//e " remove trailing on save
+
+" 80 col
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
 

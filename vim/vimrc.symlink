@@ -3,11 +3,9 @@ filetype off                   " required by vundle
 
 
 " ==== No Menus ===
-:set guioptions-=m  "remove menu bar
-:set guioptions-=T  "remove toolbar
-:set guioptions-=r  "remove right-hand scroll bar
-:set guioptions-=l  "remove left-hand scroll bar
-:set guioptions-=b
+set guioptions+=lrbmTLce
+set guioptions-=lrbmTLce
+set guioptions+=c
 
 :set number         "line numbering
 
@@ -42,12 +40,14 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-flake8'
+Bundle 'ervandew/supertab'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " * vim-scripts repos
 " Bundle 'L9'
 " Bundle 'FuzzyFinder'
+Bundle 'fs111/pydoc.vim'
 
 " * non github repos
 " Bundle 'git://git.wincent.com/command-t.git'
@@ -88,4 +88,16 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+map <c-d> \pW
 
+" change the mapleader from \ to ,
+let mapleader=","
+
+" omnicompletion : words
+inoremap <leader>, <C-x><C-o>
+
+" omnicompletion : filenames
+inoremap <leader>: <C-x><C-f>
+
+" omnicompletion : lines
+inoremap <leader>= <C-x><C-l>

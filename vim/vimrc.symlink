@@ -1,6 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required by vundle
 
+
 " ==== No Menus ===
 :set guioptions-=m  "remove menu bar
 :set guioptions-=T  "remove toolbar
@@ -9,6 +10,11 @@ filetype off                   " required by vundle
 :set guioptions-=b
 
 :set number         "line numbering
+
+
+" === Status Line ===
+:set laststatus=2   "display the statusline all the time
+set statusline=%<\ %n:%f\ %m%r%y%{\"[\".(&fenc==\"\"?&enc:&fenc).\"]\ \"}%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
 " === Navigation ===
 " Relative numbers
@@ -57,5 +63,4 @@ filetype plugin indent on     " required by vundle
 syntax enable
 set background=dark
 colorscheme solarized
-
 

@@ -39,6 +39,8 @@ apt-get install zsh
 apt-get install ipython python-pip python-dev
 apt-get install python3
 
+pip install flake8
+
 apt-get install awesome awesome-extra
 
 apt-get install git-core git-gui git-cola

@@ -5,10 +5,13 @@ function apt-search() {
 }
 
 function cdls() {
-  \cd $@ && ls
+  \cd $@ && ls --color
 }
 alias cd=cdls
 
 alias hibernate="sudo pm-hibernate"
 alias mv='nocorrect mv'
+alias ls='ls --color'
+alias ll='ls -la'
+alias rm='trashit'
 

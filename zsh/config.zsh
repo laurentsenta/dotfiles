@@ -40,9 +40,13 @@ setopt complete_aliases
 zle -N newtab
 
 bindkey '^[^[[D' backward-word
+bindkey ';5D' backward-word
 bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
+bindkey ';5C' forward-word
+bindkey '^[[5C' beginning-of-line
+bindkey ';5B' beginning-of-line
+bindkey '^[[5D' end-of-line
+bindkey ';5A' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
@@ -50,3 +54,5 @@ bindkey '^?' backward-delete-char
 zstyle ':completion:*' menu select # gui style autocomplete (use arrow)
 
 . /usr/share/autojump/autojump.zsh
+
+#bindkey -v # Vim mode!

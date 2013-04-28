@@ -2,6 +2,7 @@
 
 # ssh
 mkdir -p ~/.ssh/ && cd ~/.ssh && ssh-keygen -t rsa -C "$mail" && cd -
+mkdir -p ~/trash/
 # everpad
 sudo add-apt-repository ppa:nvbn-rm/ppa
 # dropbox

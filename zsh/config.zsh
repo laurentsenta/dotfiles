@@ -47,4 +47,6 @@ bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
 
+zstyle ':completion:*' menu select # gui style autocomplete (use arrow)
+
 . /usr/share/autojump/autojump.zsh

@@ -44,7 +44,7 @@ pip install flake8
 apt-get install awesome awesome-extra
 
 apt-get install git-core git-gui git-cola
-apt-get install ack-grep autojump tree
+apt-get install ack-grep autojump tree colordiff
 
 apt-get install everpad
 apt-get install nautilus-dropbox

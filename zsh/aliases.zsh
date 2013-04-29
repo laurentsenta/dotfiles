@@ -14,4 +14,5 @@ alias mv='nocorrect mv'
 alias ls='ls --color'
 alias ll='ls -la'
 alias rm='trashit'
+alias diff=colordiff
 

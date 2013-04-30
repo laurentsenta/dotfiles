@@ -101,3 +101,6 @@ inoremap <leader>: <C-x><C-f>
 
 " omnicompletion : lines
 inoremap <leader>= <C-x><C-l>
+
+:set so=15 " scrolloff (cursor is always 15lines away from border)
+:set nowrap

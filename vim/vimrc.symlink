@@ -104,3 +104,11 @@ inoremap <leader>= <C-x><C-l>
 
 :set so=15 " scrolloff (cursor is always 15lines away from border)
 :set nowrap
+
+:command Spell setlocal spell spelllang=en_us
+:imap <C-C> <ESC>]si
+:imap <C-X> <ESC>[si
+:imap <C-W> <ESC>z=i
+:map <C-C> [s
+:map <C-V> ]s
+:map <C-X> z=

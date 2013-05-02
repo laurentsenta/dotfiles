@@ -67,6 +67,7 @@ filetype plugin indent on     " required by vundle
 syntax enable
 set background=dark
 colorscheme solarized
+:set guifont=Inconsolata\ 12
 
 " === shortcut ===
 :map <C-Q> :NERDTreeToggle<CR>
@@ -102,13 +103,13 @@ inoremap <leader>: <C-x><C-f>
 " omnicompletion : lines
 inoremap <leader>= <C-x><C-l>
 
-:set so=15 " scrolloff (cursor is always 15lines away from border)
+:set so=5 " scrolloff (cursor is always 15lines away from border)
 :set nowrap
 
 :command Spell setlocal spell spelllang=en_us
 :imap <C-C> <ESC>]si
 :imap <C-X> <ESC>[si
-:imap <C-W> <ESC>z=i
-:map <C-C> [s
-:map <C-V> ]s
-:map <C-X> z=
+:imap <C-D> <ESC>z=i
+:map <C-C> ]s
+:map <C-X> [s
+:map <C-D> z=

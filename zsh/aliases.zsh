@@ -4,6 +4,8 @@ function apt-search() {
   apt-cache search $1 | grep $1
 }
 
+alias apt-install='sudo apt-get install'
+
 function cdls() {
   \cd $@ && ls --color
 }

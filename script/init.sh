@@ -13,4 +13,6 @@ sudo add-apt-repository ppa:nvbn-rm/ppa
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
 sudo add-apt-repository "deb http://linux.dropbox.com/ubuntu precise main"
 
+sudo add-apt-repository ppa:kilian/f.lux
+
 sudo apt-get update

@@ -48,6 +48,7 @@ apt-get install ack-grep autojump tree colordiff
 
 apt-get install everpad
 apt-get install nautilus-dropbox
+sudo apt-get install fluxgui
 
 autoLinkS awesome .config/awesome
 

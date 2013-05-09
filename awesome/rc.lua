@@ -5,6 +5,7 @@ os.execute("gnome-power-manager &")
 os.execute("gnome-volume-manager &")
 os.execute("dropbox start &")
 os.execute("everpad &")
+os.execute("fluxgui &")
 
 -- Standard awesome library
 require("awful")
@@ -26,7 +27,7 @@ require("battery")
 batterywidget = widget({type = "textbox", name = "batterywidget", align = "right" })
 
 bat_clo = battery.batclosure("BAT0")
-batterywidget.text = "[...]" 
+batterywidget.text = "[...]"
 battimer = timer({ timeout = 60 })
 battimer:add_signal("timeout", function() batterywidget.text = bat_clo() end)
 battimer:start()

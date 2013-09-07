@@ -1,0 +1,148 @@
+
+;;; ==== Notes ====
+;;; Defaults:
+;;;
+;;; M-backspace     Remove the previous word
+;;;
+;;; Custom:
+;;; M-d             Remove the current line
+;;;
+;;;
+;;; Commands:
+;;; insert-date     ...
+;;; insert-iso-date ...
+;;; whitespace-mode For clean text editing
+
+(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/emacs-colors-solarized")
+(add-to-list 'load-path "~/.emacs.d/slime")
+(add-to-list 'load-path "~/.emacs.d/cl-lookup")
+
+;; Package manager (marmalade) - remove when moving to emacs >= 24
+(require 'package)
+(add-to-list 'package-archives
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+(defvar my-packages '(starter-kit
+                      starter-kit-lisp
+                      starter-kit-bindings
+                      starter-kit-eshell
+                      nrepl
+                      clojure-mode
+                      clojure-test-mode
+                      solarized-theme))
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
+
+;; Remove interface
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; line numbers
+(column-number-mode t)
+(line-number-mode t)
+
+(setq default-major-mode 'text-mode) ; text buffer at init
+
+(setq truncate-partial-width-windows nil) ; don't truncate on splitted windows
+(setq ring-bell-function 'ignore)         ; remove bell sound
+
+(setq-default indent-tabs-mode nil) ; avoid tab key
+(setq standard-indent 4)            ; 4 space indent
+
+(mouse-wheel-mode t)                ; mouse wheel scrolling
+(setq scroll-step 1)                ; scroll by one line at a time
+(global-hl-line-mode t)             ; highlight current line
+
+(setq auto-fill-mode t)             ; auto newline
+(setq-default fill-column 78)       ; line width
+(global-linum-mode t)               ; lines number
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace) ; trailing
+
+;; 80 col rule
+(require 'column-marker)
+(add-hook 'lisp-mode-hook (lambda () (interactive) (column-marker-1 80)))
+
+;; S-up, left,... buffer switching
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+;; Remove current line
+;; http://homepages.inf.ed.ac.uk/s0243221/emacs/
+(defvar previous-column nil "Save the column position")
+(defun nuke-line()
+  "Kill an entire line, including the trailing newline character"
+  (interactive)
+  (setq previous-column (current-column))
+  (end-of-line)
+
+  (if (= (current-column) 0)
+    (delete-char 1)
+    (progn
+      (beginning-of-line)
+      (kill-line)
+      (delete-char 1)
+      (move-to-column previous-column))))
+(global-set-key (kbd "M-d") 'nuke-line)
+
+;; Coloration
+(require 'color-theme)
+(setq color-theme-is-global t)
+(eval-after-load "color-theme"
+  '(progn
+     (require 'color-theme-solarized)
+     (color-theme-solarized-dark)))
+(set-default-font "Inconsolata-10")
+
+;; Insert current date
+;; http://www.andreas-wilm.com/src/dot.emacs.html
+(message "Defining insert-date")
+(defun insert-date ()
+  "Display the current date and time."
+  (interactive)
+  (insert (format-time-string "%c" (current-time))))
+;;(insert (format-time-string "%Y%m%d %H%M" (current-time))))
+(defun insert-iso-date ()
+  "Display the current date and time."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d" (current-time))))
+
+;; Load slime and the fancy toolkit
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(require 'slime)
+
+(eval-after-load "slime"
+  '(progn
+    (add-to-list 'load-path "~/.emacs.d/slime/contrib/")
+    (slime-setup '(slime-fancy slime-asdf slime-banner))
+    (setq slime-complete-symbol*-fancy t)
+    (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)))
+
+(require 'cl-lookup)
+(put 'cl-lookup
+     'mcomplete-mode
+     '(:method-set (mcomplete-substr-method mcomplete-prefix-method)
+       :exhibit-start-chars 1))
+
+;(require 'w3m-load)
+(setq browse-url-browser-function 'w3m-browse-url)
+(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+
+(setq browse-url-browser-function 'w3m-browse-url)
+
+(require 'rainbow-delimiters)
+(global-rainbow-delimiters-mode)
+
+(require 'dirtree)
+
+(ido-mode)
+
+(setq slime-lisp-implementations
+  '((sbcl ("sbcl" "--core" "/home/laurent/sbcl.core-slime-gtk2"))))
+

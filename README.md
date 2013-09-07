@@ -9,6 +9,10 @@ yes 'Y' | ./install.sh
 
 * quick install: does not install latex
 
+git submodule init
+git submodule update
+gvim > :BundleInstall
+
 Todo
 ----
 

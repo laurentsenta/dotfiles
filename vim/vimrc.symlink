@@ -41,6 +41,9 @@ Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'ervandew/supertab'
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 

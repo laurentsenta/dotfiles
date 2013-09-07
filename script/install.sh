@@ -46,12 +46,28 @@ apt-get install awesome awesome-extra
 apt-get install git-core git-gui git-cola
 apt-get install ack-grep autojump tree colordiff
 
+apt-get install emacs-goodies-el
+apt-get install w3m-el
+
 apt-get install everpad
 apt-get install nautilus-dropbox
-sudo apt-get install fluxgui
+apt-get install fluxgui
+apt-get install freemind
 
 autoLinkS awesome .config/awesome
 
 if [ "$quick" != "Y" ]; then
 	apt-get install texlive-full;
+
+	# Latex style checking
+        apt-get install diction texlive-extra-utils
+        wget -O /tmp/style-check-current.tar.gz http://www.cs.umd.edu/~nspring/software/style-check-current.tar.gz
+	cd /tmp/
+	tar -xvzf style-check-current.tar.gz
+	cd style-check-0.14
+	make install
+	cp style-check.rb /usr/bin/
+
+	# Leiningen Clojure
+        cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;
 fi

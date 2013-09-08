@@ -1,7 +1,6 @@
 set nocompatible               " be iMproved
 filetype off                   " required by vundle
 
-
 " ==== No Menus ===
 set guioptions+=lrbmTLce
 set guioptions-=lrbmTLce
@@ -88,6 +87,7 @@ else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
+" Buffer navigation
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
@@ -116,3 +116,26 @@ inoremap <leader>= <C-x><C-l>
 :map <C-C> ]s
 :map <C-X> [s
 :map <C-D> z=
+
+" == Rainbow Parenthesis everywhere
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+let g:rbpt_colorpairs = [
+     \ ['red',         '#268bd2'],
+     \ ['Darkblue',    '#27d343'],
+     \ ['darkgray',    '#abd327'],
+     \ ['darkgreen',   '#d38327'],
+     \ ['darkcyan',    '#d327cd'],
+     \ ['darkmagenta', '#268bd2'],
+     \ ['brown',       '#27d343'],
+     \ ['gray',        '#abd327'],
+     \ ['black',       '#d38327'],
+     \ ['darkmagenta', '#d327cd'],
+     \ ]
+
+let g:rbpt_max = 12
+
+

@@ -8,7 +8,6 @@ set guioptions+=c
 
 :set number         "line numbering
 
-
 " === Status Line ===
 :set laststatus=2   "display the statusline all the time
 set statusline=%<\ %n:%f\ %m%r%y%{\"[\".(&fenc==\"\"?&enc:&fenc).\"]\ \"}%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
@@ -44,6 +43,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-fireplace'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'bling/vim-airline'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -75,7 +75,16 @@ colorscheme solarized
 " === shortcut ===
 :map <C-Q> :NERDTreeToggle<CR>
 :imap <C-Q> <ESC>:NERDTreeToggle<CR>a
+
+:map <C-B> :MBEToggle<CR>
+:imap <C-B> <ESC>:MBEToggle<CR>a
+:map <C-tab> :MBEbn<CR>
+:imap <C-tab> <ESC>:MBEbn<CR>a
+:map <C-S-tab> :MBEbp<CR>
+:imap <C-S-tab> <ESC>:MBEbp<CR>a
+
 :map <C-X> "+
+
 :map <C-S> :w<CR>
 :imap <C-S> <ESC>:w<CR>a
 

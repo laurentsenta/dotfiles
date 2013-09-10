@@ -43,6 +43,7 @@ Bundle 'ervandew/supertab'
 Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-fireplace'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'bling/vim-airline'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -137,5 +138,8 @@ let g:rbpt_colorpairs = [
      \ ]
 
 let g:rbpt_max = 12
+
+" == clojure-static
+let g:clojure_align_multiline_strings = 1 " align multiline string on the quote
 
 

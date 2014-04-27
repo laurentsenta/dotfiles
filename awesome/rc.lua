@@ -4,7 +4,6 @@ os.execute("gnome-settings-daemon &")
 os.execute("gnome-power-manager &")
 os.execute("gnome-volume-manager &")
 os.execute("dropbox start &")
-os.execute("everpad &")
 os.execute("fluxgui &")
 
 -- Standard awesome library
@@ -71,7 +70,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "main", "media", "social", "www", "dev", "doc", "log", 8, 9, "ssh"}, s, layouts[1])
+    tags[s] = awful.tag({ "main", "media", "social", "www", "wip", "wip'", "7", 8, 9, "0"}, s, layouts[1])
 end
 -- }}}
 
@@ -278,7 +277,7 @@ clientkeys = awful.util.table.join(
 -- Compute the maximum number of digit we need, limited to 9
 keynumber = 0
 for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
+   keynumber = math.min(10, math.max(#tags[s], keynumber));
 end
 
 -- Bind all key numbers to tags.
@@ -332,10 +331,6 @@ awful.rules.rules = {
                      focus = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.

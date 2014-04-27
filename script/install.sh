@@ -37,8 +37,6 @@ apt-get install zsh
 ./system/gnome-terminal-colors-solarized/solarize
 
 apt-get install ipython ipython-notebook python-pip python-dev
-apt-get install python3
-
 pip install flake8
 
 apt-get install awesome awesome-extra
@@ -49,7 +47,7 @@ apt-get install ack-grep autojump tree colordiff
 apt-get install emacs-goodies-el
 apt-get install w3m-el
 
-apt-get install everpad
+apt-get install dropbox
 apt-get install nautilus-dropbox
 apt-get install fluxgui
 apt-get install freemind

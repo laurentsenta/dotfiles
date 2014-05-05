@@ -70,7 +70,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "main", "media", "social", "www", "wip", "wip'", "7", 8, 9, "0"}, s, layouts[1])
+    tags[s] = awful.tag({ "1:main", "2:media", "3:doc", "4:www", "5:wip", "6:wip'", "7:server", "8:deploy", "9", "0:tracking"}, s, layouts[1])
 end
 -- }}}
 

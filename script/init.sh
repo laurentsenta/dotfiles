@@ -10,7 +10,7 @@ git submodule update
 
 mkdir -p ~/trash/
 
-apt-get -q -y install python-software-properties software-properties-common
+apt-get -q -y install python-software-properties software-properties-common curl
 
 add-apt-repository -y ppa:kilian/f.lux
 add-apt-repository -y ppa:nginx/$nginx

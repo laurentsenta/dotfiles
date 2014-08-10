@@ -38,12 +38,13 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-flake8'
-Bundle 'ervandew/supertab'
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-Bundle 'kien/rainbow_parentheses.vim'
+" Bundle 'ervandew/supertab'
+" Bundle 'guns/vim-clojure-static'
+" Bundle 'tpope/vim-fireplace'
+" Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'bling/vim-airline'
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
+" Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Bundle 'tpope/vim-fugitive'
 
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -116,39 +117,39 @@ inoremap <leader>: <C-x><C-f>
 " omnicompletion : lines
 inoremap <leader>= <C-x><C-l>
 
-:set so=5 " scrolloff (cursor is always 15lines away from border)
+:set so=7 " scrolloff (cursor is always 15lines away from border)
 :set nowrap
 
 :command Spell setlocal spell spelllang=en_us
-:imap <C-C> <ESC>]si
-:imap <C-X> <ESC>[si
-:imap <C-D> <ESC>z=i
-:map <C-C> ]s
-:map <C-X> [s
-:map <C-D> z=
+" :imap <C-C> <ESC>]si
+" :imap <C-X> <ESC>[si
+" :imap <C-D> <ESC>z=i
+" :map <C-C> ]s
+" :map <C-X> [s
+" :map <C-D> z=
 
 " == Rainbow Parenthesis everywhere
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-let g:rbpt_colorpairs = [
-     \ ['red',         '#268bd2'],
-     \ ['Darkblue',    '#27d343'],
-     \ ['darkgray',    '#abd327'],
-     \ ['darkgreen',   '#d38327'],
-     \ ['darkcyan',    '#d327cd'],
-     \ ['darkmagenta', '#268bd2'],
-     \ ['brown',       '#27d343'],
-     \ ['gray',        '#abd327'],
-     \ ['black',       '#d38327'],
-     \ ['darkmagenta', '#d327cd'],
-     \ ]
-
-let g:rbpt_max = 12
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
+" au Syntax * RainbowParenthesesLoadSquare
+" au Syntax * RainbowParenthesesLoadBraces
+"
+" let g:rbpt_colorpairs = [
+"      \ ['red',         '#268bd2'],
+"      \ ['Darkblue',    '#27d343'],
+"      \ ['darkgray',    '#abd327'],
+"      \ ['darkgreen',   '#d38327'],
+"      \ ['darkcyan',    '#d327cd'],
+"      \ ['darkmagenta', '#268bd2'],
+"      \ ['brown',       '#27d343'],
+"      \ ['gray',        '#abd327'],
+"      \ ['black',       '#d38327'],
+"      \ ['darkmagenta', '#d327cd'],
+"      \ ]
+"
+" let g:rbpt_max = 12
 
 " == clojure-static
-let g:clojure_align_multiline_strings = 1 " align multiline string on the quote
+" let g:clojure_align_multiline_strings = 1 " align multiline string on the quote
 
 

@@ -11,6 +11,20 @@ function cdls() {
 }
 alias cd=cdls
 
+function tunnel() {
+  machine="$1"
+  port="$2"
+  ssh $machine -L "${port}:localhost:${port}"
+}
+
+function f() {
+  if [[ -z "$2" ]]; then
+    $2="./"
+  fi
+
+  find "$2" -name "$1";
+}
+
 alias hibernate="sudo pm-hibernate"
 alias mv='nocorrect mv'
 alias ls='ls --color'

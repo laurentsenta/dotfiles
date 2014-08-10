@@ -1,3 +1,0 @@
-(set-language-environment "UTF-8")
-(setq custom-file "~/.emacs-custom")
-(load "~/.emacs-custom")

@@ -1,0 +1,14 @@
+#! /bin/sh
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+apt-get -q -y install vim zsh \
+	ipython ipython-notebook python-pip python-dev
+
+apt-get -q -y install git \
+	ack-grep autojump tree colordiff grc
+
+echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+apt-get -q -y install oracle-java8-installer
+
+# Leiningen Clojure
+cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;

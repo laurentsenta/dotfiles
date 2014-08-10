@@ -28,27 +28,12 @@ autoLinkS()
     autoLink $1 $2 -s
 }
 
-# echo "you should 'yes Y |'"
-# echo "Quick Install? (Y/whatever)"
-# read quick
-
 # Colors
 ./system/gnome-terminal-colors-solarized/solarize
 
-apt-get -q -y install vim vim-gtk zsh \
-	ipython ipython-notebook python-pip python-dev
-
-apt-get -q -y install awesome awesome-extra \
-	git-core \
-	ack-grep autojump tree colordiff grc
-
+apt-get -q -y install vim-gtk
+apt-get -q -y install awesome awesome-extra
 apt-get -q -y install dropbox nautilus-dropbox fluxgui freemind
 
+
 autoLinkS awesome .config/awesome
-
-pip install flake8
-
-# Leiningen Clojure
-cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;
-
-

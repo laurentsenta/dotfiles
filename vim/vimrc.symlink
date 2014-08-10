@@ -6,6 +6,10 @@ set guioptions+=lrbmTLce
 set guioptions-=lrbmTLce
 set guioptions+=c
 
+" ==== NO ENTERING EX MODE! ====
+:map Q <Nop>
+
+
 :set number         "line numbering
 
 " === Status Line ===
@@ -38,19 +42,11 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
 Bundle 'nvie/vim-flake8'
-" Bundle 'ervandew/supertab'
-" Bundle 'guns/vim-clojure-static'
-" Bundle 'tpope/vim-fireplace'
-" Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'bling/vim-airline'
-" Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'tpope/vim-fugitive'
-
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
 " * vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
 Bundle 'fs111/pydoc.vim'
 
 " * non github repos

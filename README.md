@@ -1,19 +1,12 @@
 conf
 ====
 
-./init.sh
+1. `./script/bootstrap`
+2. `./script/init.sh`: prepare apt, add ppa, etc
+3. `./script/install.sh`: install apps
 
-* generate ssh keys, add repos,...
-
-yes 'Y' | ./install.sh
-
-* quick install: does not install latex
-
-git submodule init
-git submodule update
-gvim > :BundleInstall
+Then in gvim: `:BundleInstall`
 
 Todo
 ----
 
-* disable vim switch to ex mode

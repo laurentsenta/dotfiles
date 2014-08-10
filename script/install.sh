@@ -1,4 +1,6 @@
 #! /bin/sh
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
 HOME=~
 INSTALL=`pwd`
 mail="laurent.senta@gmail.com"
@@ -29,8 +31,6 @@ autoLinkS()
 # echo "you should 'yes Y |'"
 # echo "Quick Install? (Y/whatever)"
 # read quick
-
-sudo -s
 
 # Colors
 ./system/gnome-terminal-colors-solarized/solarize

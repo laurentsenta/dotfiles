@@ -1,4 +1,5 @@
 #! /bin/sh
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 # git
 git submodule init
@@ -8,8 +9,6 @@ git submodule update
 # mkdir -p ~/.ssh/ && cd ~/.ssh && ssh-keygen -t rsa -C "$mail" && cd -
 
 mkdir -p ~/trash/
-
-sudo -s
 
 apt-get -q -y install python-software-properties software-properties-common
 

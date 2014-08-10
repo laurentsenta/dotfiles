@@ -114,7 +114,14 @@ install_dotfiles () {
   done
 }
 
-setup_gitconfig
+echo "Setup github/config? (y/n)"
+read WITH_GHUB
+
+if [ "$WITH_GHUB" == "y" ]
+then
+  setup_gitconfig
+fi
+
 install_dotfiles
 
 # If we are on a mac, lets install and setup homebrew

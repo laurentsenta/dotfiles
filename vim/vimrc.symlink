@@ -11,6 +11,7 @@ set guioptions+=c
 
 
 :set number         "line numbering
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " === Status Line ===
 :set laststatus=2   "display the statusline all the time
@@ -41,10 +42,10 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
-Bundle 'nvie/vim-flake8'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Bundle 'vim-scripts/DrawIt'
 
 " * vim-scripts repos
 Bundle 'fs111/pydoc.vim'
@@ -117,6 +118,7 @@ inoremap <leader>= <C-x><C-l>
 :set nowrap
 
 :command Spell setlocal spell spelllang=en_us
+
 " :imap <C-C> <ESC>]si
 " :imap <C-X> <ESC>[si
 " :imap <C-D> <ESC>z=i

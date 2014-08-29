@@ -13,9 +13,15 @@ mkdir -p ~/trash/
 apt-get -q -y install python-software-properties software-properties-common curl
 
 add-apt-repository -y ppa:kilian/f.lux
-add-apt-repository -y ppa:nginx/$nginx
+add-apt-repository -y ppa:nginx/stable
 add-apt-repository -y ppa:git-core/ppa
 add-apt-repository -y ppa:webupd8team/java
+
+Add the following line to your /etc/apt/sources.list:
+echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
+
+wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+apt-key add rabbitmq-signing-key-public.asc
 
 # Docker
 curl -s https://get.docker.io/ubuntu/ | sudo sh

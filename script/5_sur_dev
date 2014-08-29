@@ -1,0 +1,8 @@
+#! /bin/sh
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+apt-get -q -y install rabbitmq-server
+sudo apt-get -q -y install nginx
+
+echo "Nginx and rabbit mq installed,"
+echo "you should stop the services if not used"

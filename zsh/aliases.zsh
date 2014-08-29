@@ -14,7 +14,7 @@ alias cd=cdls
 function tunnel() {
   machine="$1"
   port="$2"
-  ssh $machine -L "${port}:localhost:${port}"
+  ssh $machine -N -L "${port}:localhost:${port}"
 }
 
 function f() {

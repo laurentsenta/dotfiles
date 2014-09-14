@@ -32,7 +32,7 @@ autoLinkS()
 ./system/gnome-terminal-colors-solarized/solarize
 
 apt-get -q -y install vim-gtk
-apt-get -q -y install awesome awesome-extra
+apt-get -q -y install awesome awesome-extra suckless-tools
 apt-get -q -y install dropbox nautilus-dropbox fluxgui freemind
 
 

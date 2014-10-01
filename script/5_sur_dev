@@ -5,4 +5,9 @@ apt-get -q -y install rabbitmq-server
 sudo apt-get -q -y install nginx
 
 echo "Nginx and rabbit mq installed,"
-echo "you should stop the services if not used"
+echo "Deactivating the service auto-start"
+
+update-rc.d nginx disable
+update-rc.d rabbitmq-server disable
+
+echo "Done"

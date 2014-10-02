@@ -1,0 +1,12 @@
+
+# https://mutelight.org/practical-tmux
+# C-b     = default prefix
+# C-b C-b = previous window
+
+
+set-option -g prefix C-b
+bind-key C-b last-window
+
+set -g base-index 1
+set-window-option -g window-status-current-bg red
+set -g mode-mouse on

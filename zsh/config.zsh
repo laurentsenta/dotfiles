@@ -56,3 +56,6 @@ zstyle ':completion:*' menu select # gui style autocomplete (use arrow)
 . /usr/share/autojump/autojump.zsh
 
 #bindkey -v # Vim mode!
+
+# In tmux, ctrl-r does not work without this
+bindkey '^R' history-incremental-search-backward

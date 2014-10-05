@@ -32,3 +32,7 @@ alias ll='ls -la'
 alias rm='trashit'
 alias diff=colordiff
 
+# Leiningen
+alias leindeps='lein do deps :tree'
+alias leincheck='echo "Displaying in less pager..." && lein do ancient, ancient :plugins, kibit, bikeshed | less -R'
+alias leincheck2='lein eastwood'

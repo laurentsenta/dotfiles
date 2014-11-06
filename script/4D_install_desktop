@@ -38,7 +38,6 @@ apt-get update
 apt-get -q -y install vim-gtk
 apt-get -q -y install awesome awesome-extra suckless-tools
 apt-get -q -y install dropbox nautilus-dropbox fluxgui freemind
-apt-get -q -y install qtile
 
 
 autoLinkS awesome .config/awesome

@@ -34,5 +34,5 @@ alias diff=colordiff
 
 # Leiningen
 alias leindeps='lein do deps :tree'
-alias leincheck='echo "Displaying in less pager..." && lein do ancient, ancient :plugins, kibit, bikeshed | less -R'
+alias leincheck='lein do ancient, ancient :plugins, kibit, bikeshed'
 alias leincheck2='lein eastwood'

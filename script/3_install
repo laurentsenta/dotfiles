@@ -2,7 +2,7 @@
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 apt-get -q -y install vim zsh \
-	ipython ipython-notebook python-pip python-dev
+	ipython ipython-notebook python-pip python-dev python-virtualenv libfreetype6-dev libncurses5-dev
 
 apt-get -q -y install git \
 	ack-grep autojump tree colordiff grc htop tmux

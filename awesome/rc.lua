@@ -4,7 +4,9 @@ os.execute("gnome-settings-daemon &")
 os.execute("gnome-power-manager &")
 os.execute("gnome-volume-manager &")
 os.execute("dropbox start &")
+os.execute("rescuetime &")
 os.execute("fluxgui &")
+os.execute("vmware-user&")
 
 -- Standard awesome library
 require("awful")

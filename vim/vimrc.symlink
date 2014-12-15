@@ -68,7 +68,7 @@ filetype plugin indent on     " required by vundle
 syntax enable
 set background=dark
 colorscheme solarized
-:set guifont=Inconsolata\ 12
+:set guifont=Inconsolata\ 18
 
 " === shortcut ===
 :map <C-Q> :NERDTreeToggle<CR>

@@ -39,5 +39,9 @@ apt-get -q -y install vim-gtk
 apt-get -q -y install awesome awesome-extra suckless-tools
 apt-get -q -y install dropbox nautilus-dropbox fluxgui freemind
 
+# Docker configuration
+echo "Add ${USER} to docker group, logout required for change to be effective"
+gpasswd -a ${USER} docker
+service docker restart
 
 autoLinkS awesome .config/awesome

@@ -17,6 +17,19 @@ function tunnel() {
   ssh $machine -N -L "${port}:localhost:${port}"
 }
 
+function tunnel() {
+  machine="$1"
+  port_local="$2"
+  port_remote="$2"
+
+  if [ ! -z "$3" ]; then
+    port_remote="$3"
+  fi;
+
+  echo "ssh $machine -N -L \"${port_local}:localhost:${port_remote}\""
+  ssh $machine -N -L "${port_local}:localhost:${port_remote}"
+}
+
 function f() {
   if [[ -z "$2" ]]; then
     $2="./"

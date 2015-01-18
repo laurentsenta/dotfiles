@@ -45,3 +45,7 @@ gpasswd -a ${USER} docker
 service docker restart
 
 autoLinkS awesome .config/awesome
+
+echo "edit /etc/sysctl.conf"
+echo "add: 'fs.inotify.max_user_watches = 524288'"
+echo "run: 'sudo sysctl -p'"

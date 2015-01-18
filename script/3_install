@@ -15,3 +15,6 @@ update-java-alternatives -s java-8-oracle
 
 # Leiningen Clojure
 cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;
+
+# Services
+apt-get -q -y sysvinit-utils ufw

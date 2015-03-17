@@ -53,7 +53,9 @@ bindkey '^?' backward-delete-char
 
 zstyle ':completion:*' menu select # gui style autocomplete (use arrow)
 
-. /usr/share/autojump/autojump.zsh
+[[ -s `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
+[[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
+
 
 #bindkey -v # Vim mode!
 

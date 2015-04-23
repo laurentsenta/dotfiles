@@ -1,123 +1,144 @@
+"# Core Setup
 set nocompatible               " be iMproved
 filetype off                   " required by vundle
 
-" ==== No Menus ===
+"## No Menus
 set guioptions+=lrbmTLce
 set guioptions-=lrbmTLce
 set guioptions+=c
 
-" ==== NO ENTERING EX MODE! ====
+"No Ex Mode
 :map Q <Nop>
 
 
-:set number         "line numbering
+" remove trailing on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" change the mapleader from \ to ,
+let mapleader="."
+let maplocalleader=","
+
+" scrolloff (cursor is always 15lines away from border)
+:set so=7
+:set shiftwidth=4
+
+:command Spell setlocal spell spelllang=en_us
+:set nowrap
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" === Status Line ===
-:set laststatus=2   "display the statusline all the time
-set statusline=%<\ %n:%f\ %m%r%y%{\"[\".(&fenc==\"\"?&enc:&fenc).\"]\ \"}%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
-" === Navigation ===
-" Relative numbers
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
+"# Plugins with Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" ==== Vundle ====
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" Bundles:
-" * github
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/nerdtree'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'techlivezheng/vim-plugin-minibufexpl'
-Bundle 'vim-scripts/DrawIt'
+"## System
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'msanders/snipmate.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive' " git
+Plugin 'scrooloose/syntastic'
 
-" * vim-scripts repos
-Bundle 'fs111/pydoc.vim'
+"## Tols
+Plugin 'vim-scripts/DrawIt'
+Plugin 'lervag/vimtex'
 
-" * non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
+"## Clojure
+Plugin 'tpope/vim-fireplace'
+" Plugin 'vim-scripts/paredit.vim'
+" Plugin 'tpope/vim-surround'
+" Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'venantius/vim-eastwood'
+Plugin 'venantius/vim-cljfmt'
 
-filetype plugin indent on     " required by vundle
+Plugin 'luochen1990/rainbow'
 
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-" === solarized ===
+
+"# Theming
+
 syntax enable
 set background=dark
 colorscheme solarized
 :set guifont=Inconsolata\ 18
 
-" === shortcut ===
-:map <C-Q> :NERDTreeToggle<CR>
-:imap <C-Q> <ESC>:NERDTreeToggle<CR>a
-
-:map <C-B> :MBEToggle<CR>
-:imap <C-B> <ESC>:MBEToggle<CR>a
-:map <C-tab> :MBEbn<CR>
-:imap <C-tab> <ESC>:MBEbn<CR>a
-:map <C-S-tab> :MBEbp<CR>
-:imap <C-S-tab> <ESC>:MBEbp<CR>a
-
-:map <C-X> "+
-
-:map <C-S> :w<CR>
-:imap <C-S> <ESC>:w<CR>a
-
-autocmd BufWritePre * :%s/\s\+$//e " remove trailing on save
-
-" 80 col
+"## 80 col line
 if exists('+colorcolumn')
   set colorcolumn=80
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
-" Buffer navigation
+"##  Status Line
+:set laststatus=2   "display the statusline all the time
+set statusline=%<\ %n:%f\ %m%r%y%{\"[\".(&fenc==\"\"?&enc:&fenc).\"]\ \"}%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+
+"## Tab completion in cmd line
+set wildmode=longest,list,full
+set wildmenu
+
+
+"## Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+
+"## Line Numbers
+:set number         "line numbering
+:set relativenumber
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
+
+"# Bindings
+
+"## Simplify
+
+"system copy and paste
+:map <C-X> "+
+
+"when a IDE user takes your keyboard
+:map <C-S> :w<CR>
+:imap <C-S> <ESC>:w<CR>a
+
+"## Features
+:map <C-Q> :NERDTreeToggle<CR>
+:imap <C-Q> <ESC>:NERDTreeToggle<CR>a
+
+"## Buffer navigation
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-map <c-d> \pW
 
-" change the mapleader from \ to ,
-let mapleader=","
+" " omnicompletion : words
+" inoremap <leader>, <C-x><C-o>
+"
+" " omnicompletion : filenames
+" inoremap <leader>: <C-x><C-f>
+"
+" " omnicompletion : lines
+" inoremap <leader>= <C-x><C-l>
 
-" omnicompletion : words
-inoremap <leader>, <C-x><C-o>
-
-" omnicompletion : filenames
-inoremap <leader>: <C-x><C-f>
-
-" omnicompletion : lines
-inoremap <leader>= <C-x><C-l>
-
-:set so=7 " scrolloff (cursor is always 15lines away from border)
-:set nowrap
-
-:command Spell setlocal spell spelllang=en_us
 
 " :imap <C-C> <ESC>]si
 " :imap <C-X> <ESC>[si

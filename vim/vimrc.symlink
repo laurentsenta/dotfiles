@@ -15,10 +15,9 @@ set guioptions+=c
 autocmd BufWritePre * :%s/\s\+$//e
 
 " change the mapleader from \ to ,
-let mapleader="."
-let maplocalleader=","
+let mapleader=","
 
-" scrolloff (cursor is always 15lines away from border)
+" scrolloff (cursor is always 15 lines away from border)
 :set so=7
 :set shiftwidth=4
 
@@ -45,24 +44,31 @@ Plugin 'scrooloose/syntastic'
 "## Tols
 Plugin 'vim-scripts/DrawIt'
 Plugin 'lervag/vimtex'
+Plugin 'Lokaltog/vim-easymotion'
 
 "## Clojure
 Plugin 'tpope/vim-fireplace'
-" Plugin 'vim-scripts/paredit.vim'
-" Plugin 'tpope/vim-surround'
-" Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'venantius/vim-eastwood'
+Plugin 'tpope/vim-surround'
 Plugin 'venantius/vim-cljfmt'
 
-Plugin 'luochen1990/rainbow'
+" TODO: find motivation to finally learn paredit
+" Plugin 'vim-scripts/paredit.vim'
+
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'kien/rainbow_parentheses.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 
-"# Theming
+"# Configuration
+" ctrl p ignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
 
+
+"# Theming
 syntax enable
 set background=dark
 colorscheme solarized
@@ -84,17 +90,6 @@ set wildmode=longest,list,full
 set wildmenu
 
 
-"## Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-
 "## Line Numbers
 :set number         "line numbering
 :set relativenumber
@@ -108,6 +103,35 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
+
+"## Raindbow Parenthesis
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+" always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 "# Bindings
 
@@ -124,20 +148,27 @@ nnoremap <C-n> :call NumberToggle()<cr>
 :map <C-Q> :NERDTreeToggle<CR>
 :imap <C-Q> <ESC>:NERDTreeToggle<CR>a
 
+:map <C-t> :RainbowParenthesesToggle<CR>
+:imap <C-t> <ESC>:RainbowParenthesesToggle<CR>a
+
 "## Buffer navigation
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" " omnicompletion : words
-" inoremap <leader>, <C-x><C-o>
-"
-" " omnicompletion : filenames
-" inoremap <leader>: <C-x><C-f>
-"
-" " omnicompletion : lines
-" inoremap <leader>= <C-x><C-l>
+
+"# Omnicompletion
+set omnifunc=syntaxcomplete#Complete
+
+"" omnicompletion : words
+inoremap <leader><TAB> <C-x><C-o>
+
+"" omnicompletion : filenames
+"inoremap <leader>: <C-x><C-f>
+""
+"" omnicompletion : lines
+"inoremap <leader>= <C-x><C-l>
 
 
 " :imap <C-C> <ESC>]si
@@ -146,29 +177,3 @@ map <c-h> <c-w>h
 " :map <C-C> ]s
 " :map <C-X> [s
 " :map <C-D> z=
-
-" == Rainbow Parenthesis everywhere
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
-"
-" let g:rbpt_colorpairs = [
-"      \ ['red',         '#268bd2'],
-"      \ ['Darkblue',    '#27d343'],
-"      \ ['darkgray',    '#abd327'],
-"      \ ['darkgreen',   '#d38327'],
-"      \ ['darkcyan',    '#d327cd'],
-"      \ ['darkmagenta', '#268bd2'],
-"      \ ['brown',       '#27d343'],
-"      \ ['gray',        '#abd327'],
-"      \ ['black',       '#d38327'],
-"      \ ['darkmagenta', '#d327cd'],
-"      \ ]
-"
-" let g:rbpt_max = 12
-
-" == clojure-static
-" let g:clojure_align_multiline_strings = 1 " align multiline string on the quote
-
-

@@ -40,3 +40,5 @@ done
 unset config_files
 
 source ${ZSH}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh

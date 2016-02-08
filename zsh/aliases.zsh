@@ -13,12 +13,6 @@ alias cd=cdls
 
 function tunnel() {
   machine="$1"
-  port="$2"
-  ssh $machine -N -L "${port}:localhost:${port}"
-}
-
-function tunnel() {
-  machine="$1"
   port_local="$2"
   port_remote="$2"
 
@@ -40,7 +34,6 @@ function f() {
 
 alias hibernate="sudo pm-hibernate"
 alias mv='nocorrect mv'
-alias ls='ls'
 alias ll='ls -la'
 alias rm='trashit'
 alias diff=colordiff

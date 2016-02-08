@@ -4,6 +4,20 @@ export ZSH=$HOME/dev/dotfiles/
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/dev/
 
+# Setup the plateform
+case "`uname`" in
+    "Linux")
+	export PLATFORM="linux"
+	;;
+    "Darwin")
+	export PLATFORM="macos"
+	;;
+    *)
+	>&2 echo "Unknown platform: `uname`"
+	export PLATFORN="unknown"
+	;;
+esac
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]

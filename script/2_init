@@ -5,23 +5,14 @@
 git submodule init
 git submodule update
 
-# ssh
-# mkdir -p ~/.ssh/ && cd ~/.ssh && ssh-keygen -t rsa -C "$mail" && cd -
-
 mkdir -p ~/trash/
 
-apt-get -q -y install python-software-properties software-properties-common curl
+apt-get -q -y install python-software-properties software-properties-common \
+    curl zsh ack-grep tmux
 
-add-apt-repository -y ppa:kilian/f.lux
 add-apt-repository -y ppa:nginx/stable
 add-apt-repository -y ppa:git-core/ppa
 add-apt-repository -y ppa:webupd8team/java
-
-Add the following line to your /etc/apt/sources.list:
-echo "deb http://www.rabbitmq.com/debian/ testing main" >> /etc/apt/sources.list
-
-wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-apt-key add rabbitmq-signing-key-public.asc
 
 # Docker
 curl -s https://get.docker.io/ubuntu/ | sudo sh

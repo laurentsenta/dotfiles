@@ -54,7 +54,7 @@ bindkey '^?' backward-delete-char
 zstyle ':completion:*' menu select # gui style autocomplete (use arrow)
 
 if [ $PLATFORM = "macos" ]; then
-  [[ -s `brew --prefix`/etc/autojump.zsh ]] && . `brew --prefix`/etc/autojump.zsh
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 
 [[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh

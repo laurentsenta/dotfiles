@@ -26,10 +26,12 @@ function tunnel() {
 
 function f() {
   if [[ -z "$2" ]]; then
-    $2="./"
+    P="./"
+  else
+    P="$2"
   fi
 
-  find "$2" -name "$1";
+  find "$P" -name "$1";
 }
 
 alias hibernate="sudo pm-hibernate"

@@ -22,20 +22,7 @@ if [ "$PLATFORM" = "linux" ]; then
   pip3 install tmuxp
   echo "Note that we install tmux-next (v2.1). Symlink it to /usr/local/bin/tmux"
 fi
-
 if [ "$PLATFORM" = 'macos' ]; then
+  pip3 install tmuxp
   brew install reattach-to-user-namespace;
 fi
-
-# tmuxp
-case "$PLATFORM" in
-    macos)
-	pip3 install tmuxp
-	;;
-    linux)
-	pip install tmuxp
-	;;
-    *)
-	echo "Unknown platform, can't install tmuxp"
-	;;
-esac

@@ -40,6 +40,10 @@ alias ll='ls -la'
 alias rm='trashit'
 alias diff=colordiff
 
+if [ $PLATFORM = 'linux' ]; then
+  alias ack='ack-grep'
+fi
+
 # Leiningen
 alias leindeps='lein do deps :tree'
 alias leincheck='lein do ancient, ancient :plugins, kibit, bikeshed'

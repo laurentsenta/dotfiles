@@ -15,7 +15,7 @@ add-apt-repository -y ppa:git-core/ppa
 add-apt-repository -y ppa:webupd8team/java
 
 # Docker
-curl -s https://get.docker.io/ubuntu/ | sudo sh
+curl -sSL https://get.docker.com/ | sh
 
 apt-get update
 apt-get upgrade

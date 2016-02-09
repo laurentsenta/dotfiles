@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+if [ $PLATFORM = 'macos' ]; then
+  reattach-to-user-namespace pbcopy
+else
+  echo "Unhandle platform: $PLAFTORM"
+  exit 1
+fi

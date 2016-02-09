@@ -2,6 +2,9 @@
 set nocompatible               " be iMproved
 filetype off                   " required by vundle
 
+set mouse=a
+set backspace=2
+
 "## No Menus
 set guioptions+=lrbmTLce
 set guioptions-=lrbmTLce

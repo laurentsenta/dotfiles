@@ -18,3 +18,7 @@ cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin
 
 # Services
 apt-get -q -y sysvinit-utils ufw
+
+if [ $PLATFORM = 'macos' ]; then
+  brew install reattach-to-user-namespace;
+fi

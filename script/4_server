@@ -1,0 +1,4 @@
+#! /bin/sh
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+apt-get -q -y install nginx=1.8.1-1+trusty0

@@ -4,7 +4,7 @@
 apt-get -q -y install vim zsh \
 	ipython ipython-notebook python-pip python-dev python-virtualenv \
 	libfreetype6-dev libncurses5-dev git \
-	ack-grep autojump tree colordiff grc htop tmux-next
+	ack-grep autojump tree colordiff grc htop tmux-next \
 
 echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 apt-get -q -y install oracle-java8-installer
@@ -16,8 +16,8 @@ update-java-alternatives -s java-8-oracle
 cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;
 
 # Services
-apt-get -q -y sysvinit-utils ufw
+apt-get -q -y install sysvinit-utils ufw
 
-if [ $PLATFORM = 'macos' ]; then
+if [ "$PLATFORM" = 'macos' ]; then
   brew install reattach-to-user-namespace;
 fi

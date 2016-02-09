@@ -2,7 +2,7 @@
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 apt-get -q -y install python-software-properties software-properties-common \
-    curl zsh ack-grep tmux
+    curl
 
 add-apt-repository -y ppa:nginx/stable
 add-apt-repository -y ppa:git-core/ppa

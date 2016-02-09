@@ -1,36 +1,28 @@
 #! /bin/sh
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
-apt-get -q -y install vim zsh \
-	ipython ipython-notebook python-pip python-dev python-virtualenv \
-	libfreetype6-dev libncurses5-dev git \
-	ack-grep autojump tree colordiff grc htop tmux-next \
+if [ "$PLATFORM" = "linux" ]; then
+  apt-get -q -y install vim zsh python3 \
+  	ipython ipython-notebook python-pip python-dev python-virtualenv python3-pip \
+  	libfreetype6-dev libncurses5-dev git \
+  	ack-grep autojump tree colordiff grc htop tmux-next \
 
-echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
-apt-get -q -y install oracle-java8-installer
+  echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+  apt-get -q -y install oracle-java8-installer
 
-echo "Setting default java: 1.8"
-update-java-alternatives -s java-8-oracle
+  echo "Setting default java: 1.8"
+  update-java-alternatives -s java-8-oracle
 
-# Leiningen Clojure
-cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;
+  # Leiningen Clojure
+  cd /usr/bin && sudo wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && sudo chmod a+x lein;
 
-# Services
-apt-get -q -y install sysvinit-utils ufw
+  # Services
+  apt-get -q -y install sysvinit-utils ufw
 
+  pip3 install tmuxp
+  echo "Note that we install tmux-next (v2.1). Symlink it to /usr/local/bin/tmux"
+fi
 if [ "$PLATFORM" = 'macos' ]; then
+  pip3 install tmuxp
   brew install reattach-to-user-namespace;
 fi
-
-# tmuxp
-case "$PLATFORM" in
-    macos)
-	pip3 install tmuxp
-	;;
-    linux)
-	pip install tmuxp
-	;;
-    *)
-	echo "Unknown platform, can't install tmuxp"
-	;;
-esac

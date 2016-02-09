@@ -45,6 +45,7 @@ set -sg escape-time 2 # faster inputs
 bind r source-file ~/.tmux.conf \; display "Config reloaded" # reload on `prefix r`
 set -g base-index 1 # number windows at 1
 setw -g pane-base-index 1 # number panes at 1
+set-option -g status-position top # status bar on top
 
 # Copy buffer with vim mode
 unbind [

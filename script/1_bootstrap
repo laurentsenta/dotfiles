@@ -138,3 +138,9 @@ fi
 
 echo ''
 echo '  All installed!'
+
+echo '  Preparing system'
+git submodule init
+git submodule update
+
+mkdir -p ~/trash/

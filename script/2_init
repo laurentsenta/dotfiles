@@ -1,18 +1,13 @@
 #! /bin/sh
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
-# git
-git submodule init
-git submodule update
-
-mkdir -p ~/trash/
-
 apt-get -q -y install python-software-properties software-properties-common \
     curl zsh ack-grep tmux
 
 add-apt-repository -y ppa:nginx/stable
 add-apt-repository -y ppa:git-core/ppa
 add-apt-repository -y ppa:webupd8team/java
+add-apt-repository -y ppa:pi-rho/dev
 
 # Docker
 curl -sSL https://get.docker.com/ | sh

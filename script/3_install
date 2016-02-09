@@ -2,10 +2,9 @@
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 apt-get -q -y install vim zsh \
-	ipython ipython-notebook python-pip python-dev python-virtualenv libfreetype6-dev libncurses5-dev
-
-apt-get -q -y install git \
-	ack-grep autojump tree colordiff grc htop tmux
+	ipython ipython-notebook python-pip python-dev python-virtualenv \
+	libfreetype6-dev libncurses5-dev git \
+	ack-grep autojump tree colordiff grc htop tmux-next
 
 echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 apt-get -q -y install oracle-java8-installer

@@ -26,3 +26,16 @@ fi
 if [ "$PLATFORM" = 'macos' ]; then
   brew install reattach-to-user-namespace;
 fi
+
+# tmuxp
+case "$PLATFORM" in
+    macos)
+	pip3 install tmuxp
+	;;
+    linux)
+	pip install tmuxp
+	;;
+    *)
+	echo "Unknown platform, can't install tmuxp"
+	;;
+esac

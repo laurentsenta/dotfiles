@@ -11,6 +11,7 @@ case "`uname`" in
 	;;
     "Darwin")
 	export PLATFORM="macos"
+	stty -ixon # Deactivate special handling of ctrl-s / ctrl-q
 	;;
     *)
 	>&2 echo "Unknown platform: `uname`"

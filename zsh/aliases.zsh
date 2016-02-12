@@ -69,3 +69,38 @@ function vagrant-force-ssh() {
   done
 }
 
+function vagrant-down() {
+  if [ -z $1 ]; then
+    echo -n 'no parameter to match paths, suspend all vms? [y/N] '
+    read yn
+    case "$yn" in
+      [Yy]* ) ;;
+      * ) exit 1 ;;
+    esac
+  fi
+
+  for p in $( vagrant global-status | grep "$1" | grep running | awk '{ print $5 }' )
+  do
+    >&2 echo "Sutting down `basename $p`";
+    cd "$p" && vagrant suspend;
+  done
+}
+
+function set-iterm-tab-name() {
+  if [ "$PLATFORM" = "macos" ]; then
+      echo -e "\033];$1\007"
+  else
+      >&2 echo "only on macos in iterm2"
+  fi
+}
+
+# $1 = type; 0 - both, 1 - tab, 2 - title
+# # rest = text
+setTerminalText () {
+  local mode=$1 ; shift
+  echo -ne "\033]$mode;$@\007"
+}
+
+stt_tab   () { setTerminalText 1 $@; }
+stt_title () { setTerminalText 2 $@; }
+

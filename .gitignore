@@ -5,4 +5,5 @@ vim/vim.symlink/bundle/*
 vim/*/.netrwhist
 lein.symlink/repl-history
 lein.symlink/self-installs
+*.swp
 

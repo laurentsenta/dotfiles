@@ -75,7 +75,7 @@ function vagrant-down() {
     read yn
     case "$yn" in
       [Yy]* ) ;;
-      * ) exit 1 ;;
+      * ) return 1 ;;
     esac
   fi
 
@@ -104,3 +104,11 @@ setTerminalText () {
 stt_tab   () { setTerminalText 1 $@; }
 stt_title () { setTerminalText 2 $@; }
 
+function unisync() {
+  if [ -z "$1" ] || [ -z "$2" ]; then
+    >&2 echo "unisync [remote-host] [remote-root]"
+    return 1
+  fi
+
+  unison -batch ~/.tmuxp "ssh://$1/$2/.tmuxp"
+}

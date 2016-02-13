@@ -6,6 +6,7 @@ if [ "$PLATFORM" = "linux" ]; then
   	ipython ipython-notebook python-pip python-dev python-virtualenv python3-pip \
   	libfreetype6-dev libncurses5-dev git \
   	ack-grep autojump tree colordiff grc htop tmux-next \
+	unison
 
   echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
   apt-get -q -y install oracle-java8-installer
@@ -24,5 +25,6 @@ if [ "$PLATFORM" = "linux" ]; then
 fi
 if [ "$PLATFORM" = 'macos' ]; then
   pip3 install tmuxp
-  brew install reattach-to-user-namespace;
+  # Note that we need unison v 2.40 to match current ubuntu
+  brew install reattach-to-user-namespace unison240
 fi

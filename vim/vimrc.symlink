@@ -13,7 +13,6 @@ set guioptions+=c
 "No Ex Mode
 :map Q <Nop>
 
-
 " remove trailing on save
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -54,16 +53,15 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-surround'
 Plugin 'venantius/vim-cljfmt'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'kien/rainbow_parentheses.vim'
 
 "## Python
 Plugin 'klen/python-mode'
 
 " TODO: find motivation to finally learn paredit
 " Plugin 'vim-scripts/paredit.vim'
-
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-clojure-highlight'
-Plugin 'kien/rainbow_parentheses.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

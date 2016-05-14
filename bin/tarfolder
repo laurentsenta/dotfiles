@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+FOLDER="${1%/}"
+
+if [ -z ${FOLDER} ]; then
+    >&2 echo "tarfolder [folder]"
+    exit 1
+fi
+
+CMD="tar czf ${FOLDER}.tar.gz ${FOLDER}"
+
+>&2 echo "Running ${CMD}, ok? [y/N] "
+read yn
+
+if [ "${yn}" = "y" ]; then
+    tar czf ${FOLDER}.tar.gz ${FOLDER}
+    exit 0
+else
+    exit 2
+fi

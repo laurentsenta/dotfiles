@@ -58,7 +58,8 @@ Plugin 'guns/vim-clojure-highlight'
 Plugin 'kien/rainbow_parentheses.vim'
 
 "## Python
-Plugin 'klen/python-mode'
+" Crappy plugin that crashed my vims 100% of the time
+" Plugin 'klen/python-mode'
 
 " TODO: find motivation to finally learn paredit
 " Plugin 'vim-scripts/paredit.vim'

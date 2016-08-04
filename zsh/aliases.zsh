@@ -52,11 +52,11 @@ alias leincheck2='lein eastwood'
 
 # Vagrant
 function vagrant-running() {
-  vagrant status | grep running > /dev/null
+  vagrant status | grep 'not running' > /dev/null
   if [ $? = 0 ]; then
-    echo "vagrant already running"
-  else
     vagrant up
+  else
+    echo "vagrant already running"
   fi
 }
 

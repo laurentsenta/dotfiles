@@ -55,3 +55,13 @@ done
 unset config_files
 
 source ${ZSH}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# because we have good taste
+set -o vi
+
+# poupou's inline vim editor
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+

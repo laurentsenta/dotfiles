@@ -5,6 +5,7 @@
                        ]
         :test-refresh {:notify-command ["reattach-to-user-namespace" "terminal-notifier" "-title" "Tests" "-message"]}
         :plugins [
+                  [lein-pprint "1.1.1"]
                   [lein-midje "3.1.3"]
                   [lein-ancient "0.5.5"]
                   [lein-kibit "0.0.8"]
@@ -12,7 +13,7 @@
                   [lein-bikeshed "0.1.8"]
                   [slamhound "1.5.5"]
                   [lein-ubersource "0.1.1"]
-                  [com.jakemccrary/lein-test-refresh "0.13.0"]
+                  [com.jakemccrary/lein-test-refresh "0.14.0"]
                   [pjstadig/humane-test-output "0.7.1"]
                   [venantius/ultra "0.4.0"]
                   ]

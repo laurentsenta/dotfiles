@@ -142,5 +142,6 @@ echo '  All installed!'
 echo '  Preparing system'
 git submodule init
 git submodule update
+git config --global core.excludesfile ~/.gitignore
 
 mkdir -p ~/trash/

@@ -55,9 +55,9 @@ zstyle ':completion:*' menu select # gui style autocomplete (use arrow)
 
 if [ $PLATFORM = "macos" ]; then
   [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+else
+  [[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
 fi
-
-[[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
 
 
 #bindkey -v # Vim mode!

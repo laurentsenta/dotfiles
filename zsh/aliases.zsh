@@ -42,7 +42,6 @@ alias diff=colordiff
 
 if [ $PLATFORM = 'linux' ]; then
   alias ack='ack-grep'
-  alias tmux='tmux-next'
 fi
 
 # Leiningen

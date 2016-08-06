@@ -8,7 +8,8 @@ if [ "`uname`" = "Linux" ]; then
 	python3-pip \
   	libfreetype6-dev libncurses5-dev libxft-dev git \
   	ack-grep autojump tree colordiff grc htop tmux \
-	unison mosh
+	unison mosh \
+	libpq-dev
 
   pip3 install --upgrade pip
 
@@ -40,9 +41,10 @@ elif [ "`uname`" = 'Darwin' ]; then
   brew install python python3
   echo "checkout the logs to linkapps stuff"
   read
-  brew install reattach-to-user-namespace unison tree macvim vim
+  brew install reattach-to-user-namespace unison tree macvim vim postgresql
   echo "checkout the logs to linkapps stuff"
   read
 
   pip3 install tmuxp ipython jupyter matplotlib
+
 fi

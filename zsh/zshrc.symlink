@@ -66,6 +66,6 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # mkvenv, workon, etc for python2/3 mess
-VIRTUALENVWRAPER_PYTHON=`which python3`
+VIRTUALENVWRAPPER_PYTHON=`which python3`
 source /usr/local/bin/virtualenvwrapper.sh
 

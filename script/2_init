@@ -33,6 +33,8 @@ deb https://apt.dockerproject.org/repo ubuntu-xenial main
   apt-get update
   apt-get upgrade
 
+  echo "checkout install docker compose at: https://github.com/docker/compose/releases"
+
 elif [ "`uname`" == "Darwin" ]; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 

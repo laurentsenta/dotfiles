@@ -1,3 +1,5 @@
 #! /bin/sh
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
+apt-get install nginx
+

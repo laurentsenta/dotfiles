@@ -4,9 +4,11 @@
 if [ "`uname`" = "Linux" ]; then
   apt-get -q -y install vim zsh  \
   	python-pip python-virtualenv \
-  	libfreetype6-dev libncurses5-dev git \
+  	libfreetype6-dev libncurses5-dev libxft-dev git \
   	ack-grep autojump tree colordiff grc htop tmux \
-	unison
+	unison mosh
+
+  pip install --upgrade pip
 
   echo "Setting default java: 1.8"
   echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
@@ -14,14 +16,21 @@ if [ "`uname`" = "Linux" ]; then
   update-java-alternatives -s java-8-oracle
 
   # Leiningen Clojure
-  cd /usr/bin && wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && chmod a+x lein;
+  if [ ! `which lein` ]; then
+    cd /usr/bin && wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && chmod a+x lein;
+    lein > /dev/null
+  fi
 
   # Services
   apt-get -q -y install sysvinit-utils ufw
 
-  pip3 install tmuxp ipython jupyter matplotlib
+  pip install tmuxp ipython jupyter matplotlib virtualenv \
+      virtualenvwrapper
+
+  ufw allow ssh
+  ufw allow 60000:61000/udp # mosh ports
 
 elif [ "`uname`" = 'Darwin' ]; then
   pip3 install tmuxp ipython jupyter matplotlib
-  brew install reattach-to-user-namespace unison
+  brew install reattach-to-user-namespace unison tree
 fi

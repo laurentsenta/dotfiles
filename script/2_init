@@ -7,6 +7,8 @@ add-apt-repository -y ppa:nginx/stable
 add-apt-repository -y ppa:git-core/ppa
 add-apt-repository -y ppa:webupd8team/java
 add-apt-repository -y ppa:pi-rho/dev
+add-apt-repository -y ppa:keithw/mosh
+
 
 # Docker
 curl -sSL https://get.docker.com/ | sh

@@ -1,17 +1,27 @@
 #! /bin/sh
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
-apt-get -q -y install software-properties-common curl
+if [ "`uname`" == "Linux" ]; then
+  apt-get -q -y install software-properties-common curl
 
-add-apt-repository -y ppa:nginx/stable
-add-apt-repository -y ppa:git-core/ppa
-add-apt-repository -y ppa:webupd8team/java
-add-apt-repository -y ppa:pi-rho/dev
-add-apt-repository -y ppa:keithw/mosh
+  add-apt-repository -y ppa:nginx/stable
+  add-apt-repository -y ppa:git-core/ppa
+  add-apt-repository -y ppa:webupd8team/java
+  add-apt-repository -y ppa:pi-rho/dev
+  add-apt-repository -y ppa:keithw/mosh
 
 
-# Docker
-curl -sSL https://get.docker.com/ | sh
+  # Docker
+  curl -sSL https://get.docker.com/ | sh
 
-apt-get update
-apt-get upgrade
+  apt-get update
+  apt-get upgrade
+
+elif [ "`uname`" == "Darwin" ]; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    open 'https://www.docker.com/'
+    open 'https://www.vagrantup.com/'
+    open 'https://www.jetbrains.com/idea/'
+
+fi

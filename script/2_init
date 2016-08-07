@@ -1,7 +1,7 @@
 #! /bin/bash
-[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 if [ "`uname`" == "Linux" ]; then
+  [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
   apt-get update
 
   apt-get -q -y install software-properties-common curl \

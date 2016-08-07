@@ -76,7 +76,31 @@ directory_name(){
 
 smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
 
-export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
+
+# vim mode decoration
+# -------------------
+
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/vi-mode/vi-mode.plugin.zsh
+
+function zle-keymap-select zle-line-init() {
+  zle reset-prompt
+  zle -R
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+
+# if mode indicator wasn't setup by theme, define default
+if [[ "$MODE_INDICATOR" == "" ]]; then
+  MODE_INDICATOR="%{$fg_bold[red]%}!%{$reset_color%}"
+fi
+
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
+
+export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n$(vi_mode_prompt_info)› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
 }

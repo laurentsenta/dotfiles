@@ -41,10 +41,15 @@ elif [ "`uname`" = 'Darwin' ]; then
   brew install python python3
   echo "checkout the logs to linkapps stuff"
   read
-  brew install reattach-to-user-namespace unison tree macvim vim postgresql
+  brew install reattach-to-user-namespace unison tree macvim vim postgresql rename
   echo "checkout the logs to linkapps stuff"
   read
+  brew install gettext # envsubst
+  brew link --force gettext
+
+  brew tap d12frosted/emacs-plus
+  brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
+  brew linkapps
 
   pip3 install tmuxp ipython jupyter matplotlib
-
 fi

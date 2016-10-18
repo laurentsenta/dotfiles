@@ -11,6 +11,10 @@ if [ "`uname`" = "Linux" ]; then
 	unison mosh \
 	libpq-dev
 
+  # `perf stat` cmd:
+  apt-get -q -y install linux-tools-common linux-tools-generic \
+      linux-tools-`uname -r`
+
   pip3 install --upgrade pip
 
   echo "Setting default java: 1.8"

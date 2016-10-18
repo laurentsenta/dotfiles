@@ -38,6 +38,25 @@ unpushed () {
   $git cherry -v @{upstream} 2>/dev/null
 }
 
+host() {
+    case "`hostname`" in
+	HALUNTU10)
+	    echo "red"
+	    ;;
+	dyselxic-beaver)
+	    echo "magenta"
+	    ;;
+	HALIX)
+	    echo "green"
+	    ;;
+	*)
+	    echo "yellow"
+	    ;;
+    esac;
+}
+
+HOST_COL="$(host)"
+
 need_push () {
   if [[ $(unpushed) == "" ]]
   then
@@ -48,7 +67,7 @@ need_push () {
 }
 
 rb_prompt(){
-  echo "%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg_bold[green]%}%m%{$reset_color%}"
+  echo "%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg_bold[$HOST_COL]%}%m%{$reset_color%}"
 }
 
 # This keeps the number of todos always available the right hand side of my

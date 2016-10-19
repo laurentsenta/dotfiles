@@ -45,6 +45,7 @@ elif [ "`uname`" = 'Darwin' ]; then
   echo "checkout the logs to linkapps stuff"
   read
   brew install gettext # envsubst
+  brew install coreutils
   brew link --force gettext
 
   brew tap d12frosted/emacs-plus
@@ -52,4 +53,8 @@ elif [ "`uname`" = 'Darwin' ]; then
   brew linkapps
 
   pip3 install tmuxp ipython jupyter matplotlib
+  brew install npm
+  npm install -g phonegap
+
+  brew install sassc
 fi

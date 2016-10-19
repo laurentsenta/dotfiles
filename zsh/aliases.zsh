@@ -111,3 +111,5 @@ function unisync() {
 
   unison -batch ~/.tmuxp "ssh://$1/$2/.tmuxp"
 }
+
+alias timeout=gtimeout

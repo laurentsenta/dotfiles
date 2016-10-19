@@ -36,6 +36,7 @@ deb https://apt.dockerproject.org/repo ubuntu-xenial main
   echo "checkout install docker compose at: https://github.com/docker/compose/releases"
 
 elif [ "`uname`" == "Darwin" ]; then
+    sudo spctl --master-disable # gatekeeper allow apps from everywhere
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
     open 'https://www.docker.com/'

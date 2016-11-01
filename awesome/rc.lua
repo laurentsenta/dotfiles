@@ -130,7 +130,7 @@ mytextclock = awful.widget.textclock()
 -- Setup battery widget
 batterywidget = wibox.widget.textbox()
 bat_clo = battery.batclosure("BAT0")
-batterywidget:set_text(bat_clo())
+batterywidget:set_text("loading")
 battimer = timer({ timeout = 30 })
 battimer:connect_signal("timeout", function() batterywidget:set_text(bat_clo()) end)
 battimer:start()
@@ -138,7 +138,7 @@ battimer:start()
 -- Setup volume widget
 volumewidget = wibox.widget.textbox()
 bat_clo = battery.batclosure("BAT0")
-volumewidget:set_text(get_volume())
+volumewidget:set_text("loading")
 voltimer = timer({ timeout = 1 })
 voltimer:connect_signal("timeout", function() volumewidget:set_text(get_volume()) end)
 voltimer:start()
@@ -149,7 +149,7 @@ function sysstats()
 end
 
 statwidget = wibox.widget.textbox()
-statwidget:set_markup(sysstats())
+statwidget:set_markup("loading")
 
 statstimer = timer({ timeout = 5 })
 statstimer:connect_signal("timeout",
@@ -326,9 +326,9 @@ globalkeys = awful.util.table.join(
 
     -- Multimedia keys
     awful.key({ }, "XF86AudioRaiseVolume", function ()
-        awful.util.spawn("amixer set Master 9%+") end),
+        awful.util.spawn("amixer -D pulse set Master 9%+") end),
     awful.key({ }, "XF86AudioLowerVolume", function ()
-        awful.util.spawn("amixer set Master 9%-") end),
+        awful.util.spawn("amixer -D pulse set Master 9%-") end),
     awful.key({ }, "XF86AudioMute", function ()
 	awful.util.spawn("amixer -D pulse set Master 1+ toggle", false) end),
 

@@ -42,6 +42,9 @@ deb https://apt.dockerproject.org/repo ubuntu-xenial main
   echo "atm, use visudo to add them:"
   echo "laurent ALL= NOPASSWD: /home/laurent/dev/dotfiles/bin/xbacklight_alien"
 
+  echo "ALSO, on macbook: check spoof_osx_version for refind"
+  echo "this should enable gpu switching"
+
 elif [ "`uname`" == "Darwin" ]; then
     sudo spctl --master-disable # gatekeeper allow apps from everywhere
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

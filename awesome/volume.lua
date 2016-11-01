@@ -2,7 +2,7 @@ local wibox = require("wibox")
 local awful = require("awful")
 
 function get_volume()
-   local fd = io.popen("amixer sget Master")
+   local fd = io.popen("amixer -D pulse sget Master")
    local status = fd:read("*all")
    fd:close()
 

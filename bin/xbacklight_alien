@@ -1,0 +1,36 @@
+#!/bin/sh
+BASE="/sys/class/backlight/gmux_backlight/"
+
+# Run as root
+if [ "root" != "$USER" ]; then
+    exec sudo $0 "$@"
+fi
+
+# Check params
+if [ -z "$1" ] || [ -z "$2" ]; then
+    >&2 echo "missing parameters"
+    >&2 echo "usage: cmd OPERATION PERCENT_VALUE"
+    >&2 echo "usage: -inc 10"
+    >&2 echo "usage: -dec 2"
+fi
+
+brightness=$(cat "$BASE/brightness")
+max_brightness=$(cat "$BASE/max_brightness")
+
+case "$1" in
+    '-inc') op="+";;
+    '-dec') op="-";;
+    *) exit 1;;
+esac
+
+delta=`echo "scale=0; ($2 * $max_brightness) / 100" | bc`
+new_br=`echo "scale=0; $brightness $op $delta" | bc`
+
+if [ "$new_br" -lt 0 ]; then
+    new_br=0;
+elif [ "$new_br" -gt $max_brightness ]; then
+    new_br=$max_brightness;
+fi
+
+echo "$new_br" > $BASE/brightness
+

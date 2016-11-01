@@ -11,6 +11,7 @@ if [ "`uname`" == "Linux" ]; then
   add-apt-repository -y ppa:git-core/ppa
   add-apt-repository -y ppa:webupd8team/java
   add-apt-repository -y ppa:pi-rho/dev
+  add-apt-repository -y ppa:nathan-renniewaldock/flux
   # add-apt-repository -y ppa:keithw/mosh # atm regular ubuntu repo is more up to date with sigsev fix
 
 
@@ -34,6 +35,12 @@ deb https://apt.dockerproject.org/repo ubuntu-xenial main
   apt-get upgrade
 
   echo "checkout install docker compose at: https://github.com/docker/compose/releases"
+
+  echo "on macbook pro ubuntu:"
+  echo "needs access to xbacklight alien and kbdbacklight alien"
+  echo "check path in awesome/rc.lua AND make sure they can be run without sudo"
+  echo "atm, use visudo to add them:"
+  echo "laurent ALL= NOPASSWD: /home/laurent/dev/dotfiles/bin/xbacklight_alien"
 
 elif [ "`uname`" == "Darwin" ]; then
     sudo spctl --master-disable # gatekeeper allow apps from everywhere

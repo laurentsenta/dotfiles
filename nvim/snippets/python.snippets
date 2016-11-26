@@ -1,0 +1,15 @@
+snippet main
+	#!/usr/bin/env python
+	'''
+	File: ${1:`Filename('$1.py', 'foo.py')`}
+	Author: ${2:`g:snips_author`}
+	Description: ${3}
+	'''
+	import sys
+	${4}
+
+	def main(${5:*args}):
+	    print >>sys.stderr, "No main defined for %s" % __file__
+	    ${6}
+	if __name__ == "__main__":
+	    main(*sys.argv[1:])

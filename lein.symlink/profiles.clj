@@ -1,9 +1,7 @@
- {
-  :repl {:plugins [[cider/cider-nrepl "0.10.0-SNAPSHOT"]
-                   [refactor-nrepl "2.0.0-SNAPSHOT"]]
-         :dependencies [[alembic "0.3.2"]
-                        [org.clojure/tools.nrepl "0.2.12"]]}
-  :user {
+{
+ :repl {:plugins []
+        :dependencies [[alembic "0.3.2"]]}
+ :user {
         :dependencies [
                        [cljfmt "0.1.10"]
                        [jonase/eastwood "0.2.1" :exclusions [org.clojure/clojure]]
@@ -25,5 +23,5 @@
                   [venantius/ultra "0.4.0"]
                   ]
         :ultra {:color-scheme :solarized_dark}
-        :android {:sdk-path "/Users/lsenta/dev/android-sdk-macosx"}
+        :android {:sdk-path "/Users/laurent/dev/android-sdk-macosx"}
         :aliases {"slamhound" ["run" "-m" "slam.hound"]}}}

@@ -9,7 +9,11 @@ if [ "`uname`" = "Linux" ]; then
   	libfreetype6-dev libncurses5-dev libxft-dev git \
   	ack-grep autojump tree colordiff grc htop tmux \
 	unison mosh \
-	libpq-dev
+	libpq-dev fluxgui xbacklight
+
+  # `perf stat` cmd:
+  apt-get -q -y install linux-tools-common linux-tools-generic \
+      linux-tools-`uname -r`
 
   pip3 install --upgrade pip
 

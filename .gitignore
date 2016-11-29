@@ -2,6 +2,7 @@ sublime2/User/Package\ Control.sublime-settings
 sublime2/User/Package Control.last-run
 git/gitconfig.symlink
 vim/vim.symlink/bundle/*
+nvim/bundle/*
 vim/*/.netrwhist
 lein.symlink/repl-history
 lein.symlink/self-installs

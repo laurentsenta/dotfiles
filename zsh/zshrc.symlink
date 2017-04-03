@@ -79,8 +79,10 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # mkvenv, workon, etc for python2/3 mess
-VIRTUALENVWRAPPER_PYTHON=`which python3`
+export VIRTUALENVWRAPPER_PYTHON=`which python`
 source /usr/local/bin/virtualenvwrapper.sh
+
+export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /Users/laurent/Desktop/google-cloud-sdk/path.zsh.inc ]; then

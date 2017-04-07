@@ -120,3 +120,7 @@ alias b20="echo \"afplay ~/Dropbox/music/ringtones/OOT_Fanfare_Item.wav\" | at n
 
 # Docker not found in intellij:
 alias fixintellij="sudo launchctl config user path $PATH"
+
+function notif() {
+  osascript -e "display notification \"$2\" with title \"$1\"";
+}

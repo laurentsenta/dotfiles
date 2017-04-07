@@ -72,7 +72,7 @@ elif [ "`uname`" = 'Darwin' ]; then
 
   pip install flake8
   npm install -g jshint firebase-tools
-  npm install -g karma
+  npm install -g karma karma-chrome-launcher karma-cljs-test
 
   brew linkapps
 fi

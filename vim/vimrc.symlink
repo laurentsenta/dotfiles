@@ -60,6 +60,9 @@ Plugin 'kien/rainbow_parentheses.vim'
 "## Files
 Plugin 'chrisbra/csv.vim'
 
+"## Go
+Plugin 'fatih/vim-go'
+
 "## Python
 " Crappy plugin that crashed my vims 100% of the time
 " Plugin 'klen/python-mode'

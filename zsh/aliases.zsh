@@ -113,3 +113,14 @@ function unisync() {
 }
 
 alias timeout=gtimeout
+
+alias w25="echo \"afplay ~/Dropbox/music/ringtones/Her\ -\ God\ Morning.m4r -v 2\" | at now + 25 minutes"
+alias b5="echo \"afplay ~/Dropbox/music/ringtones/OOT_Fanfare_Item.wav\" | at now + 5 minutes"
+alias b20="echo \"afplay ~/Dropbox/music/ringtones/OOT_Fanfare_Item.wav\" | at now + 20 minutes"
+
+# Docker not found in intellij:
+alias fixintellij="sudo launchctl config user path $PATH"
+
+function notif() {
+  osascript -e "display notification \"$2\" with title \"$1\"";
+}

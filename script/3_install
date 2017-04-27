@@ -2,20 +2,23 @@
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
 
 if [ "`uname`" = "Linux" ]; then
-  apt-get -q -y install vim neovim zsh  \
+  apt-get -q -y install vim zsh neovim \
         python python-dev \
 	python3 python3-dev \
 	python3-pip \
   	libfreetype6-dev libncurses5-dev libxft-dev git \
   	ack-grep autojump tree colordiff grc htop tmux \
 	unison mosh \
-	libpq-dev fluxgui xbacklight
+	libpq-dev fluxgui xbacklight xclip
 
   # `perf stat` cmd:
   apt-get -q -y install linux-tools-common linux-tools-generic \
       linux-tools-`uname -r`
 
   pip3 install --upgrade pip
+  pip3 install neovim
+  pip2 install neovim
+  gem install neovim
 
   echo "Setting default java: 1.8"
   echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
@@ -60,7 +63,7 @@ elif [ "`uname`" = 'Darwin' ]; then
   brew install npm
   npm install -g phonegap
 
-  brew install sassc
+  brew install sassc chromedriver
   brew install ctags neovim/neovim/neovim
   brew install sassc rename
 
@@ -68,7 +71,8 @@ elif [ "`uname`" = 'Darwin' ]; then
   brew install --HEAD universal-ctags
 
   pip install flake8
-  npm install -g jshint
+  npm install -g jshint firebase-tools
+  npm install -g karma karma-chrome-launcher karma-cljs-test
 
   brew linkapps
 fi

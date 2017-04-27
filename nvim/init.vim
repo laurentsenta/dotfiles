@@ -16,6 +16,9 @@ set nocompatible               " be iMproved
 set hidden
 filetype off                   " required by vundle
 
+" copy/paste Sierra fix: http://stackoverflow.com/a/39741226/843194
+set clipboard=unnamed
+
 " set mouse=a
 " set backspace=2
 
@@ -32,13 +35,14 @@ set swapfile
 set backupdir=~/.vim-tmp
 set directory=~/.vim-tmp
 
-
-
 "No Ex Mode
-:map Q <Nop>
+map Q <Nop>
 
 " remove trailing on save
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Special file types
+au BufNewFile,BufRead *.boot set filetype=clojure
 
 " change the mapleader from \ to ,
 let mapleader="\<SPACE>"
@@ -47,9 +51,7 @@ set scrolloff=7 " cursor always 7 lines away from border
 set nowrap
 
 " :set shiftwidth=4
-"
 " :command Spell setlocal spell spelllang=en_us
-"
 " autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " https://arusahni.net/blog/2015/04/switching-to-neovim-part-2.html
@@ -77,50 +79,55 @@ Plugin 'neovim/node-host'
 
 " System
 " ------
+
+" switch colorscheme: `:colorscheme hybrid/solarized'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'w0ng/vim-hybrid'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter' " git diff markers in gutter
+Plugin 'Yggdroot/indentLine' " show line indentation with thin vertical lines
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ivalkeen/vim-ctrlp-tjump'
+
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive' " git
+
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'majutsushi/tagbar'
-Plugin 'sjl/gundo.vim'
 Plugin 'easymotion/vim-easymotion'
 
 Plugin 'Shougo/deoplete.nvim'
-Plugin 'neomake/neomake' " syntax checking / syntastic.neovim
-Plugin 'Shougo/neosnippet.vim' " snipmate.neovim
-Plugin 'lsenta/neosnippet-snippets'
-Plugin 'kshenoy/vim-signature'
 
-Plugin 'vim-ctrlspace/vim-ctrlspace'
-Plugin 'Yggdroot/indentLine'
-Plugin 'mhinz/vim-startify'
-Plugin 'ivalkeen/vim-ctrlp-tjump'
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'sjl/gundo.vim'
+" Plugin 'majutsushi/tagbar'
+" Plugin 'Shougo/neosnippet.vim' " snipmate.neovim
+" Plugin 'lsenta/neosnippet-snippets'
+" Plugin 'kshenoy/vim-signature'
+" Plugin 'vim-ctrlspace/vim-ctrlspace' " fancy nav & project mgmnt
+" Plugin 'neomake/neomake' " syntax checking / syntastic.neovim
+" Plugin 'vim-syntastic/syntastic'
+" Plugin 'mhinz/vim-startify' " start screen
 
-
-" "## Tools
+" ## Tools
 Plugin 'vim-scripts/DrawIt'
 
 " Clojure
 " -------
+
 Plugin 'snoe/nvim-parinfer.js'
 Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-clojure-highlight'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+
+" Plugin 'tpope/vim-repeat'
+" Plugin 'guns/vim-sexp'
+" Plugin 'guns/vim-clojure-static'
+" Plugin 'guns/vim-clojure-highlight'
 Plugin 'tpope/vim-fireplace'
 " Plugin 'venantius/vim-eastwood' " no clojurescript
 " Plugin 'venantius/vim-cljfmt' " no clojurescript
 
-Plugin 'tpope/vim-repeat'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Python
 " ------
@@ -146,7 +153,7 @@ filetype plugin indent on    " required
 
 syntax enable
 set background=dark
-set guifont=Sauce\ Code\ Powerline\ 14
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 14
 colorscheme solarized
 
 " let g:hybrid_custom_term_colors = 1
@@ -222,40 +229,11 @@ map M `
 map m_ :delmarks A-Z0-9a-z<CR>
 map <Leader>m :marks<CR>
 
-
-
-
 " NERDTreeToggle
 " --------------
 map <C-Q> :NERDTreeToggle<CR>
 imap <C-Q> <ESC>:NERDTreeToggle<CR>a
 let NERDTreeIgnore = ['\.pyc$']
-
-" Tagbar
-" ------
-map <C-T> :TagbarToggle<CR>
-imap <C-T> <ESC>:TagbarToggle<CR>a
-
-" Gundo
-" -----
-map <C-Z> :GundoToggle<CR>
-imap <C-Z> <ESC>:GundoToggle<CR>a
-
-
-" vim-gutter
-" ----------
-
-" - jump between hunks: with [c and ]c.
-" - preview: <leader>hp,
-" - stage: <leader>hs,
-" - undo: <leader>hu respectively.
-" - toggle whole: ctrl+g
-
-" faster refresh
-set updatetime=250
-
-:map <C-G> :GitGutterToggle<CR>
-:imap <C-G> <ESC>:GitGutterToggle<CR>a
 
 " nerdcommenter
 " -------------
@@ -300,25 +278,20 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" vim-clojure-static
-" ------------------
-let g:clojure_align_multiline_strings = 1
-
 " vim-sexp-mapping-for-regular-people
 " --------- laurent edition ---------
 " remap navigation using: (f)orm/(e)lement (h)/(l) motion
-map fl >f
-map fh <f
-map el >e
-map eh <e
-map fi <I
-map fa >I
-
-" (e)lement (s)urround with symbol "(" "[" "{"
-map es cse
-" (f)orm (d)elete (remove surroundings)
-map fd dsf
-
+" map fl >f
+" map fh <f
+" map el >e
+" map eh <e
+" map fi <I
+" map fa >I
+"
+" " (e)lement (s)urround with symbol "(" "[" "{"
+" map es cse
+" " (f)orm (d)elete (remove surroundings)
+" map fd dsf
 
 " Simplify
 " ========
@@ -370,18 +343,6 @@ map <S-j> <C-w>j
 map <S-k> <C-w>k
 map <S-l> <C-w>l
 map <S-h> <C-w>h
-
-" Syntastic
-" ---------
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 map <Leader>\| :vsplit<CR>
 map <Leader>\ :vsplit<CR>

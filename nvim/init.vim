@@ -1,5 +1,4 @@
 " TODO:
-" [ ] test ecclim with java project
 " [ ] switch from syntastic to neomake?
 " [ ] Use fancy icons (patched fonts):
 "     https://github.com/ryanoasis/vim-devicons
@@ -95,7 +94,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive' " git
 
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'ludovicchabant/vim-gutentags'
+" Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'easymotion/vim-easymotion'
 
 Plugin 'Shougo/deoplete.nvim'
@@ -127,6 +126,11 @@ Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 Plugin 'tpope/vim-fireplace'
 " Plugin 'venantius/vim-eastwood' " no clojurescript
 " Plugin 'venantius/vim-cljfmt' " no clojurescript
+
+" Go
+" --
+
+Plugin 'fatih/vim-go'
 
 
 " Python

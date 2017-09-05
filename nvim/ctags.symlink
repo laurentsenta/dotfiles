@@ -4,6 +4,7 @@
 --exclude=out
 --exclude=old
 --exclude=resources/public/js
+--exclude=resources/target/
 --exclude=resources/public/assets
 
 --exclude=.git

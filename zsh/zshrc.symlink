@@ -79,7 +79,9 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
 # mkvenv, workon, etc for python2/3 mess
-export VIRTUALENVWRAPPER_PYTHON=`which python`
+export VIRTUALENVWRAPPER_PYTHON=`which python3`
 source /usr/local/bin/virtualenvwrapper.sh
 
 export VAGRANT_DEFAULT_PROVIDER=vmware_fusion
+
+export PATH="$HOME/.yarn/bin:$PATH"

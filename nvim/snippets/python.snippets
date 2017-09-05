@@ -9,7 +9,7 @@ snippet main
 	${4}
 
 	def main(${5:*args}):
-	    print >>sys.stderr, "No main defined for %s" % __file__
+	    print("No main defined for %s" % __file__, file=sys.stderr)
 	    ${6}
 	if __name__ == "__main__":
 	    main(*sys.argv[1:])

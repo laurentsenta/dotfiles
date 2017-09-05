@@ -54,12 +54,14 @@ elif [ "`uname`" = 'Darwin' ]; then
   brew install gettext # envsubst
   brew install coreutils
   brew link --force gettext
+  brew install autojump tmux
 
   brew tap d12frosted/emacs-plus
   brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
   brew linkapps
 
-  pip3 install tmuxp ipython jupyter matplotlib
+  pip3 install tmuxp ipython jupyter matplotlib virtualenv \
+    virtualenvwrapper
   brew install npm
   npm install -g phonegap
 
@@ -73,6 +75,7 @@ elif [ "`uname`" = 'Darwin' ]; then
   pip install flake8
   npm install -g jshint firebase-tools
   npm install -g karma karma-chrome-launcher karma-cljs-test
+  brew install go-delve/delve/delve
 
   brew linkapps
 fi

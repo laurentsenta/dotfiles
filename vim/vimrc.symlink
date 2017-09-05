@@ -4,6 +4,7 @@ filetype off                   " required by vundle
 
 set mouse=a
 set backspace=2
+set conceallevel=0
 
 "## No Menus
 set guioptions+=lrbmTLce

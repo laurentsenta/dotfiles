@@ -18,13 +18,13 @@ filetype off                   " required by vundle
 " copy/paste Sierra fix: http://stackoverflow.com/a/39741226/843194
 set clipboard=unnamed
 
-" set mouse=a
 " set backspace=2
+set mouse=a
+set conceallevel=0
 
 " No Menus
 " ========
-set guioptions+=lrbmTLce
-set guioptions-=lrbmTLce
+set guioptions-=lrbmTLe
 set guioptions+=c
 
 " Avoid .swp'ing all over the place (be nice with clj-boot)
@@ -43,15 +43,12 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Special file types
 au BufNewFile,BufRead *.boot set filetype=clojure
 
-" change the mapleader from \ to ,
+" change the mapleader from \ to space!
 let mapleader="\<SPACE>"
 
-set scrolloff=7 " cursor always 7 lines away from border
 set nowrap
-
-" :set shiftwidth=4
-" :command Spell setlocal spell spelllang=en_us
-" autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+set scrolloff=7 " cursor always 7 lines away from border
+set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " https://arusahni.net/blog/2015/04/switching-to-neovim-part-2.html
 if has('nvim')
@@ -80,77 +77,79 @@ Plugin 'neovim/node-host'
 " ------
 
 " switch colorscheme: `:colorscheme hybrid/solarized'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'w0ng/vim-hybrid'
+" Plugin 'w0ng/vim-hybrid' " brown-ish color scheme
+Plugin 'altercation/vim-colors-solarized' " blue-ish classic
 
+" ### UI
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/indentLine' " show line indentation with thin vertical lines
 
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'ivalkeen/vim-ctrlp-tjump'
+" ### Tools
+" Plugin 'vim-ctrlspace/vim-ctrlspace' " fancy nav & project mgmnt
+Plugin 'kien/ctrlp.vim'
 
 Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/deoplete.nvim'
+" Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'tpope/vim-fugitive' " git
 
-Plugin 'scrooloose/nerdcommenter'
-" Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'easymotion/vim-easymotion'
+" Plugin 'vim-scripts/DrawIt'
 
-Plugin 'Shougo/deoplete.nvim'
+" Plugin 'scrooloose/nerdcommenter'
+" Plugin 'easymotion/vim-easymotion'
 
 " Plugin 'sjl/gundo.vim'
 " Plugin 'majutsushi/tagbar'
 " Plugin 'Shougo/neosnippet.vim' " snipmate.neovim
 " Plugin 'lsenta/neosnippet-snippets'
 " Plugin 'kshenoy/vim-signature'
-" Plugin 'vim-ctrlspace/vim-ctrlspace' " fancy nav & project mgmnt
 " Plugin 'neomake/neomake' " syntax checking / syntastic.neovim
 " Plugin 'vim-syntastic/syntastic'
 " Plugin 'mhinz/vim-startify' " start screen
 
 " ## Tools
-Plugin 'vim-scripts/DrawIt'
+" Plugin 'vim-scripts/DrawIt'
 
 " Clojure
 " -------
 
-Plugin 'snoe/nvim-parinfer.js'
-Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+" Plugin 'guns/vim-clojure-static'
+" Plugin 'junegunn/rainbow_parentheses.vim'
+" Plugin 'snoe/nvim-parinfer.js'
+" Plugin 'tpope/vim-fireplace'
+
+" Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Plugin 'tpope/vim-repeat'
 " Plugin 'guns/vim-sexp'
-" Plugin 'guns/vim-clojure-static'
 " Plugin 'guns/vim-clojure-highlight'
-Plugin 'tpope/vim-fireplace'
 " Plugin 'venantius/vim-eastwood' " no clojurescript
 " Plugin 'venantius/vim-cljfmt' " no clojurescript
 
 " Go
 " --
 
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
 
 
 " Python
 " ------
-Plugin 'zchee/deoplete-jedi'
+" Plugin 'zchee/deoplete-jedi'
 " Plugin 'python-rope/ropevim.git'
 
 " Java
 " ----
-Plugin 'artur-shaik/vim-javacomplete2'
+" Plugin 'artur-shaik/vim-javacomplete2'
 
 " Files
 " -----
-Plugin 'chrisbra/csv.vim'
+" Plugin 'chrisbra/csv.vim'
 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
 
 " Theming
 " =======
@@ -164,62 +163,23 @@ colorscheme solarized
 " let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 " colorscheme hybrid
 
-
 " airline
 " -------
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1 " sexy format, requires custom fonts
 
-" 80 column marker
-" ----------------
-if exists('+colorcolumn')
-  set colorcolumn=80
-else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
-
-" --------------------------
-set wildmode=longest,list,full " longest=fill as much as possible, list=selection list, full=show all options first
-set wildmenu
-
-" Line Numbers
-" ------------
-:set number         "line numbering
-:set relativenumber
-
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <C-n> :call NumberToggle()<cr>
-
-" Rainbow Parenthesis
-" -------------------
-let g:rainbow#max_level = 16
-
-" Activation based on file type
-augroup rainbow_lisp
-  autocmd!
-  autocmd FileType lisp,clojure,scheme RainbowParentheses
-augroup END
-
-
 " Configuration
 " =============
 
 " Enter follows links
-nmap <ENTER> <C-]>
+" nmap <ENTER> <C-]>
 
 " easymotion
 " ----------
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>W <Plug>(easymotion-overwin-w)
-map  <Leader>l <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+" map  <Leader>w <Plug>(easymotion-bd-w)
+" nmap <Leader>W <Plug>(easymotion-overwin-w)
+" map  <Leader>l <Plug>(easymotion-bd-jk)
+" nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " jumping around
 " --------------
@@ -228,16 +188,10 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " m_ (shift -) remove all marks
 " m[symbol] set mark
 " M[symbol] jump to mark
-map M `
+" map M `
 " '[symbol] jump to mark, line begin
-map m_ :delmarks A-Z0-9a-z<CR>
-map <Leader>m :marks<CR>
-
-" NERDTreeToggle
-" --------------
-map <C-Q> :NERDTreeToggle<CR>
-imap <C-Q> <ESC>:NERDTreeToggle<CR>a
-let NERDTreeIgnore = ['\.pyc$']
+" map m_ :delmarks A-Z0-9a-z<CR>
+" map <Leader>m :marks<CR>
 
 " nerdcommenter
 " -------------
@@ -253,73 +207,35 @@ let NERDTreeIgnore = ['\.pyc$']
 " -  c$: comment to end of line
 " -  ca: comment alternate deliminiters
 
-" ctrl-p
-" ------
-" ignore .gitignore:
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class
-
-imap <C-E> <ESC>:CtrlPTag<CR>
-map <C-E> :CtrlPTag<CR>
-
 
 " deoplete (autocomplete)
 " -----------------------
+
+call deoplete#enable()
+
 set smartcase
-
-let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#sources#jedi#show_docstring = 1
 
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-" Let <Tab> also do completion
+" " Let <Tab> also do completion
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" Close the documentation window when completion is done
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" vim-sexp-mapping-for-regular-people
-" --------- laurent edition ---------
-" remap navigation using: (f)orm/(e)lement (h)/(l) motion
-" map fl >f
-" map fh <f
-" map el >e
-" map eh <e
-" map fi <I
-" map fa >I
+" "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" "\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 "
-" " (e)lement (s)urround with symbol "(" "[" "{"
-" map es cse
-" " (f)orm (d)elete (remove surroundings)
-" map fd dsf
-
-" Simplify
-" ========
-
-" system copy and paste -> C-x y/p
-:map <C-X> "+
-
-" when a IDE user takes your keyboard
-:map <C-S> :w<CR>
-:imap <C-S> <ESC>:w<CR>a
-
-" shift-tab
-" /!\ ctrl+i == tab
-
-noremap <Leader>o <C-I>
-noremap <Leader>u <C-O>
-map <Leader>i :jumps<CR>
-
-nnoremap <Tab> >>
-nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>
-
-vmap <Tab> >
-vmap <S-Tab> <
+" " vim-sexp-mapping-for-regular-people
+" " --------- laurent edition ---------
+" " remap navigation using: (f)orm/(e)lement (h)/(l) motion
+" " map fl >f
+" " map fh <f
+" " map el >e
+" " map eh <e
+" " map fi <I
+" " map fa >I
+" "
+" " " (e)lement (s)urround with symbol "(" "[" "{"
+" " map es cse
+" " " (f)orm (d)elete (remove surroundings)
+" " map fd dsf
 
 
 " >>   Indent line by shiftwidth spaces
@@ -339,15 +255,7 @@ vmap <S-Tab> <
 " >i{  Increase inner block indent
 " <i{  Decrease inner block indent
 
+source $HOME/.config/nvim/basics.vim
+source $HOME/.config/nvim/plugins.vim
 
-" Buffer navigation
-" -----------------
 
-map <S-j> <C-w>j
-map <S-k> <C-w>k
-map <S-l> <C-w>l
-map <S-h> <C-w>h
-
-map <Leader>\| :vsplit<CR>
-map <Leader>\ :vsplit<CR>
-map <Leader>- :split<CR>

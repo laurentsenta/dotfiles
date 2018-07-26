@@ -1,8 +1,9 @@
 #!/bin/sh
 
 sudo apt-get install vim git
+me=`whoami`
 
-if [ "`whoami`" == "root" ]; then
+if [ "${me}" = "root" ]; then
     echo "set root password:"
     passwd
     echo "creating my user:"

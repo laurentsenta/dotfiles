@@ -45,7 +45,7 @@ map <Leader>- :split<CR>
 " system copy and paste -> C-x y/p
 map <C-X> "+
 
-" when a IDE user takes your keyboard
+" IDE style save
 map <C-S> :w<CR>
 imap <C-S> <ESC>:w<CR>a
 

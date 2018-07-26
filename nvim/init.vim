@@ -59,7 +59,6 @@ endif
 
 " Plugins
 " =======
-
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin(s:editor_root . '/bundle')
 
@@ -71,7 +70,7 @@ Plugin 'gmarik/Vundle.vim'
 " after install: navigate to the node-host directory
 " (e.g. ~/.nvim/bundle/node-host) and run npm install
 " Used for: nvim-parinfer.js
-Plugin 'neovim/node-host'
+" Plugin 'neovim/node-host'
 
 " System
 " ------
@@ -83,14 +82,14 @@ Plugin 'altercation/vim-colors-solarized' " blue-ish classic
 " ### UI
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Yggdroot/indentLine' " show line indentation with thin vertical lines
+" Plugin 'Yggdroot/indentLine' " show line indentation with thin vertical lines
 
 " ### Tools
 " Plugin 'vim-ctrlspace/vim-ctrlspace' " fancy nav & project mgmnt
 Plugin 'kien/ctrlp.vim'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/deoplete.nvim'
+" Plugin 'Shougo/deoplete.nvim'
 " Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'tpope/vim-fugitive' " git
 
@@ -211,13 +210,13 @@ let g:airline_powerline_fonts = 1 " sexy format, requires custom fonts
 " deoplete (autocomplete)
 " -----------------------
 
-call deoplete#enable()
+" call deoplete#enable()
 
-set smartcase
-let g:deoplete#enable_smart_case = 1
+" set smartcase
+" let g:deoplete#enable_smart_case = 1
 
-" " Let <Tab> also do completion
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"  Let <Tab> also do completion
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " "smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " "\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"

@@ -1,4 +1,4 @@
-#!/bin/sh
+set -x
 
 sudo apt-get install vim git
 me=`whoami`
@@ -10,10 +10,10 @@ if [ "${me}" = "root" ]; then
     adduser laurent
     usermod -aG sudo laurent
     echo "in the next, update hostname"
+    read
     vim /etc/hostname
     vim /etc/hosts
-    echo "moving to regular user"
-    su laurent
+    echo "move to user laurent, wget and run again!"
 fi
 
 cd ~

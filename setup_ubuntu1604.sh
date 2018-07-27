@@ -21,10 +21,12 @@ mkdir .ssh/
 echo "Enter your ssh public key"
 cat >> .ssh/authorized_keys
 echo "remove password login from ssh config (PasswordAuthentication)"
-vim /etc/ssh/sshd_config
+read
+sudo vim /etc/ssh/sshd_config
 
 ssh-keygen -t rsa -b 4096 -C 'laurent.senta@gmail.com'
 echo "go to https://github.com/settings/keys and add your new ssh key:"
+read
 cat ~/.ssh/id_rsa.pub
 
 mkdir ~/dev
@@ -33,7 +35,9 @@ git clone 'git@github.com:lsenta/dotfiles.git'
 cd dotfiles
 
 ./script/1_bootstrap
+
 echo "setup vim, skip the errors then call :BundleInstall"
+read
 vim
 
 ./script/2_init

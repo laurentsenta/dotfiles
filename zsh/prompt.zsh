@@ -43,7 +43,7 @@ host() {
 	HALUNTU10)
 	    echo "red"
 	    ;;
-	dyselxic-beaver)
+	GARDEN1)
 	    echo "magenta"
 	    ;;
 	HALIX)

@@ -7,23 +7,23 @@ export PROJECTS=~/dev/
 # Setup the plateform
 case "`uname`" in
     "Linux")
-	export PLATFORM="linux"
-	;;
+        export PLATFORM="linux"
+        ;;
     "Darwin")
-	export PLATFORM="macos"
-	stty -ixon # Deactivate special handling of ctrl-s / ctrl-q
-	;;
+        export PLATFORM="macos"
+        stty -ixon # Deactivate special handling of ctrl-s / ctrl-q
+        ;;
     *)
-	>&2 echo "Unknown platform: `uname`"
-	export PLATFORN="unknown"
-	;;
+        >&2 echo "Unknown platform: `uname`"
+        export PLATFORN="unknown"
+        ;;
 esac
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
 then
-  source ~/.localrc
+    source ~/.localrc
 fi
 
 # all of our zsh files
@@ -33,13 +33,13 @@ config_files=($ZSH/*/*.zsh)
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
 do
-  source $file
+    source $file
 done
 
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
-  source $file
+    source $file
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
@@ -49,7 +49,7 @@ compinit
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
-  source $file
+    source $file
 done
 
 unset config_files
@@ -90,25 +90,24 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="/Users/laurent/.jenv/shims:${PATH}"
-
-source "/usr/local/Cellar/jenv/0.4.4/libexec/libexec/../completions/jenv.zsh"
+source "${HOME}/.jenv/completions/jenv.sh"
 
 jenv rehash 2>/dev/null
 export JENV_LOADED=1
 unset JAVA_HOME
 jenv() {
-  typeset command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
+    typeset command
+    command="$1"
+    if [ "$#" -gt 0 ]; then
+        shift
+    fi
 
-  case "$command" in
-  enable-plugin|rehash|shell|shell-options)
-    eval `jenv "sh-$command" "$@"`;;
-  *)
-    command jenv "$command" "$@";;
-  esac
+    case "$command" in
+        enable-plugin|rehash|shell|shell-options)
+            eval `jenv "sh-$command" "$@"`;;
+        *)
+            command jenv "$command" "$@";;
+    esac
 }
 
 # /Jenv

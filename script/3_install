@@ -50,6 +50,8 @@ if [ "`uname`" = "Linux" ]; then
         virtualenv \
         virtualenvwrapper
 
+    git clone https://github.com/gcuisinier/jenv.git ~/.jenv
+
     # pip3 install neovim
     # gem install neovim
 
@@ -87,6 +89,7 @@ elif [ "`uname`" = 'Darwin' ]; then
 
     pip3 install ipython jupyter matplotlib virtualenv \
         virtualenvwrapper
+    # TODO: install jenv
     # brew install npm # TODO: setup nvm
     # npm install -g phonegap
 

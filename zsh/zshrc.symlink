@@ -90,7 +90,12 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="/Users/laurent/.jenv/shims:${PATH}"
-source "${HOME}/.jenv/completions/jenv.zsh"
+
+if [ ${PLATFORM} = "macos" ];
+    source "/usr/local/Cellar/jenv/0.4.4/libexec/libexec/../completions/jenv.zsh"
+else
+    source "${HOME}/.jenv/completions/jenv.zsh"
+fi
 
 jenv rehash 2>/dev/null
 export JENV_LOADED=1

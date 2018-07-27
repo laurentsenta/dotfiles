@@ -90,7 +90,7 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="/Users/laurent/.jenv/shims:${PATH}"
-source "${HOME}/.jenv/completions/jenv.sh"
+source "${HOME}/.jenv/completions/jenv.zsh"
 
 jenv rehash 2>/dev/null
 export JENV_LOADED=1

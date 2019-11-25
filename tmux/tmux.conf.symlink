@@ -5,6 +5,8 @@ set -g prefix C-a
 unbind C-b
 bind C-a send-prefix
 
+set-option -g history-limit 15000
+
 # Use zsh
 # set -g default-command /bin/zsh
 # set -g default-shell /bin/zsh

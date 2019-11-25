@@ -55,7 +55,7 @@ done
 unset config_files
 
 source ${ZSH}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ${ZSH}/zsh/zsh-nvm/zsh-nvm.plugin.zsh
+# source ${ZSH}/zsh/zsh-nvm/zsh-nvm.plugin.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -85,36 +85,19 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export PATH="$HOME/.yarn/bin:$PATH"
 
-# Jenv Setup (java env switcher)
-# ==============================
-
-export PATH="$HOME/.jenv/bin:$PATH"
-export PATH="/Users/laurent/.jenv/shims:${PATH}"
-
-if [ ${PLATFORM} = "macos" ]; then
-    source "/usr/local/Cellar/jenv/0.4.4/libexec/libexec/../completions/jenv.zsh";
-else
-    source "${HOME}/.jenv/completions/jenv.zsh";
-fi
-
-jenv rehash 2>/dev/null
-export JENV_LOADED=1
-unset JAVA_HOME
-jenv() {
-    typeset command
-    command="$1"
-    if [ "$#" -gt 0 ]; then
-        shift
-    fi
-
-    case "$command" in
-        enable-plugin|rehash|shell|shell-options)
-            eval `jenv "sh-$command" "$@"`;;
-        *)
-            command jenv "$command" "$@";;
-    esac
-}
-
-# /Jenv
-
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+export PATH="/Users/laurent/Library/Python/3.7/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh

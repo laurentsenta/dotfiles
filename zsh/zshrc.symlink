@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/dev/dotfiles/
 
@@ -7,24 +9,24 @@ export PROJECTS=~/dev/
 # Setup the plateform
 case "`uname`" in
     "Linux")
-        export PLATFORM="linux"
-        ;;
+	export PLATFORM="linux"
+	;;
     "Darwin")
-        export PLATFORM="macos"
-        stty -ixon # Deactivate special handling of ctrl-s / ctrl-q
-        ;;
+	export PLATFORM="macos"
+	stty -ixon # Deactivate special handling of ctrl-s / ctrl-q
+	;;
     *)
-        >&2 echo "Unknown platform: `uname`"
-        export PLATFORN="unknown"
-        ;;
+	>&2 echo "Unknown platform: `uname`"
+	export PLATFORN="unknown"
+	;;
 esac
 
 # use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
-if [[ -a ~/.localrc ]]
-then
-    source ~/.localrc
-fi
+    # want in your public, versioned repo.
+    if [[ -a ~/.localrc ]]
+    then
+	source ~/.localrc
+    fi
 
 # all of our zsh files
 typeset -U config_files
@@ -43,8 +45,14 @@ do
 done
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+# https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
+# init completion once every 24H
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do
+      compinit
+done
+compinit -C
+
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -55,7 +63,6 @@ done
 unset config_files
 
 source ${ZSH}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source ${ZSH}/zsh/zsh-nvm/zsh-nvm.plugin.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
@@ -63,12 +70,12 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 set -o vi
 
 # http://unix.stackexchange.com/questions/44115/how-do-i-perform-a-reverse-history-search-in-zshs-vi-mode
-bindkey "^R" history-incremental-search-backward
+    bindkey "^R" history-incremental-search-backward
 
-bindkey -M vicmd "/" vi-history-search-backward
-bindkey -M vicmd "?" vi-history-search-forward
-bindkey -M vicmd "n" vi-repeat-search
-bindkey -M vicmd "N" vi-rev-repeat-search
+    bindkey -M vicmd "/" vi-history-search-backward
+    bindkey -M vicmd "?" vi-history-search-forward
+    bindkey -M vicmd "n" vi-repeat-search
+    bindkey -M vicmd "N" vi-rev-repeat-search
 
 # http://dougblack.io/words/zsh-vi-mode.html
 export KEYTIMEOUT=1
@@ -79,25 +86,31 @@ set blink-matching-paren on
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-# mkvenv, workon, etc for python2/3 mess
-export VIRTUALENVWRAPPER_PYTHON=`which python3`
-source /usr/local/bin/virtualenvwrapper.sh
+# export PATH="$HOME/.yarn/bin:$PATH"
 
-export PATH="$HOME/.yarn/bin:$PATH"
-
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-export PATH="/Users/laurent/Library/Python/3.7/bin:$PATH"
-
+# Lazy Load node & nvm stuffs:
+# https://gist.github.com/fl0w/07ce79bd44788f647deab307c94d6922
+#
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/laurent/.nvm/versions/node/v8.15.1/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
+# Add every binary that requires nvm, npm or node to run to an array of node globals
+NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+NODE_GLOBALS+=("yarn")
+#
+# # Lazy-loading nvm + npm on node globals call
+load_nvm () {
+    export NVM_DIR="$HOME/.nvm"
+    . "${NVM_DIR}/nvm.sh"
+    # [ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+}
+
+# Making node global trigger the lazy loading
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
+
+# zprof

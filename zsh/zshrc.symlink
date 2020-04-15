@@ -114,3 +114,18 @@ for cmd in "${NODE_GLOBALS[@]}"; do
 done
 
 # zprof
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/laurent/dev/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/laurent/dev/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/laurent/dev/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/laurent/dev/google-cloud-sdk/completion.zsh.inc'; fi
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/dev
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+
+export ANDROID_SDK=/Users/laurent/Library/Android/sdk
+export PATH=/Users/laurent/Library/Android/sdk/platform-tools:$PATH

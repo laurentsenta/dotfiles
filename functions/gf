@@ -3,6 +3,3 @@ gf() {
   git checkout -b $branch origin/$branch
 }
 
-commit() {
-  git commit -m"$1"
-}

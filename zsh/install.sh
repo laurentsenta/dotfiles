@@ -1,5 +1,3 @@
-brew install zsh
-brew install ack-grep
-brew install autojump
+brew install zsh autojump ack
 
 chsh -s $(which zsh)

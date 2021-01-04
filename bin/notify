@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# https://github.com/rtomayko/dotfiles/blob/rtomayko/.local/bin/headers
+
+osascript -e "display notification \"$2\" with title \"$1\"";

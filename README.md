@@ -1,4 +1,4 @@
-# holman does dotfiles
+# laurent steals dotfiles from holman
 
 Your dotfiles are how you personalize your system. These are mine.
 

@@ -66,9 +66,12 @@ battery_status() {
   fi
 }
 
-export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+
+# export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+  export RPROMPT="%{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
 }
 
 precmd() {

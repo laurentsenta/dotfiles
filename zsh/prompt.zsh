@@ -66,12 +66,20 @@ battery_status() {
   fi
 }
 
+node_version() {
+  if [ -n "$NVM_BIN" ]
+  then
+    version=$(echo $NVM_BIN | sed -e 's;.*node/\(.*\)/bin;\1;');
+    echo "%{$fg_bold[green]%}(node ${version})%{$reset_color%}";
+  fi
+}
+
 smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
 
 # export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
 export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
+  export RPROMPT="$(node_version) %{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
 }
 
 precmd() {

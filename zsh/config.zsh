@@ -36,3 +36,6 @@ bindkey '^[[5D' beginning-of-line
 bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^?' backward-delete-char
+
+# In tmux, ctrl-r does not work without this
+bindkey '^R' history-incremental-search-backward

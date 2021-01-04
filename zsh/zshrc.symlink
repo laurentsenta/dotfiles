@@ -74,3 +74,6 @@ done
 unset cmd NODE_GLOBALS
 export PATH="$PATH:$HOME/.yarn/bin"
 # Done Lazy NVM
+
+# autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh

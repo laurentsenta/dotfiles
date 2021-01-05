@@ -54,6 +54,10 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
+directory_path() {
+  echo "%{$fg_bold[cyan]%}%~%{$reset_color%}"
+}
+
 battery_status() {
   if test ! "$(uname)" = "Darwin"
   then
@@ -67,17 +71,21 @@ battery_status() {
 }
 
 node_version() {
-  if [ -n "$NVM_BIN" ]
-  then
-    version=$(echo $NVM_BIN | sed -e 's;.*node/\(.*\)/bin;\1;');
-    echo "%{$fg_bold[green]%}(node ${version})%{$reset_color%}";
+  if [[ "$NVM_BIN" =~ 'v[0-9]+.[0-9]+' ]]; then
+    echo "%{$fg_bold[green]%}(node ${MATCH})%{$reset_color%}";
   fi
+
+  # if [ -n "$NVM_BIN" ]
+  # then
+  #   version=$(echo $NVM_BIN | sed -e 's;.*node/\(.*\)/bin;\1;');
+  #   echo "%{$fg_bold[green]%}(node ${version})%{$reset_color%}";
+  # fi
 }
 
 smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
 
 # export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
-export PROMPT=$'\nin $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\nin $(directory_path) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="$(node_version) %{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
 }

@@ -82,3 +82,19 @@ export PATH="$PATH:$HOME/.yarn/bin"
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# kubernetes and kubectl
+source <(kubectl completion zsh)
+
+alias k=kubectl
+complete -F __start_kubectl k # apply autocomplete to the `k` alias
+
+# Created by `pipx` on 2021-03-02 19:07:58
+export PATH="$PATH:/Users/laurent/.local/bin"
+
+# pipx autocomplete:
+autoload -U bashcompinit
+bashcompinit
+
+eval "$(register-python-argcomplete pipx)"
+

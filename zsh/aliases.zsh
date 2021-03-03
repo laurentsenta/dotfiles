@@ -12,3 +12,5 @@ alias rm=trashit
 alias ll='ls -la'
 
 alias diff=colordiff
+
+alias g=git

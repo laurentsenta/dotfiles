@@ -14,3 +14,5 @@ alias ll='ls -la'
 alias diff=colordiff
 
 alias g=git
+
+alias chk=~/dev/apps/chk/start.sh

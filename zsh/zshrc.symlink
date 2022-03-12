@@ -32,6 +32,9 @@ done
 autoload -U compinit
 compinit
 
+autoload -U bashcompinit
+bashcompinit
+
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
 do
@@ -71,6 +74,7 @@ _load_nvm() {
 for cmd in "${NODE_GLOBALS[@]}"; do
   eval "function ${cmd}(){ unset -f ${NODE_GLOBALS[*]}; _load_nvm; unset -f _load_nvm; ${cmd} \$@; }"
 done
+
 unset cmd NODE_GLOBALS
 export PATH="$PATH:$HOME/.yarn/bin"
 # Done Lazy NVM
@@ -89,31 +93,51 @@ source <(kubectl completion zsh)
 alias k=kubectl
 complete -F __start_kubectl k # apply autocomplete to the `k` alias
 
-# Created by `pipx` on 2021-03-02 19:07:58
-export PATH="$PATH:/Users/laurent/.local/bin"
-
-# pipx autocomplete:
-autoload -U bashcompinit
-bashcompinit
-
-eval "$(register-python-argcomplete pipx)"
-
 # Virtual Env Setup
-export WORKON_HOME=~/.envs
-export VIRTUALENVWRAPPER_PYTHON=`which python3`
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=~/.envs
+# export VIRTUALENVWRAPPER_PYTHON=`which python3`
+# source /usr/local/bin/virtualenvwrapper.sh
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# https://stackoverflow.com/questions/45577194/failed-to-activate-virtualenv-with-pyenv/45578839
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
-# building ssl with python
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/laurent/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+
+# # building ssl with python
+# export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+
+# # heroku autocomplete setup
+# HEROKU_AC_ZSH_SETUP_PATH=/Users/laurent/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # languages config (necessary for mosh compat with servers)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+# Android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Python & PyEnv
+
+# export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
+# 
+# export LDFLAGS="-L/usr/local/opt/zlib/lib"
+# export CPPFLAGS="-I/usr/local/opt/zlib/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

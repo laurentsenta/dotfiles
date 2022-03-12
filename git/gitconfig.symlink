@@ -41,3 +41,8 @@
 [user]
 	name = Laurent Senta
 	email = laurent@singulargarden.com
+	signingkey = 1B5782E8C4804F58
+[init]
+	defaultBranch = main
+[pull]
+	ff = only

@@ -12,4 +12,4 @@ __pycache__
 .Ulysses-*
 .orbitdb
 ffs
-tags
+/tags

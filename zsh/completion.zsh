@@ -19,8 +19,10 @@ function cc() {
 }
 
 _cc() {
+    ICOMEFROM="${PWD}"
     \cd "${DEV_PATH}"
     compadd ./*/*.code-workspace
+    cd "${ICOMEFROM}"
 }
 
 compdef _cc cc

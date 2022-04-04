@@ -91,7 +91,8 @@ export PATH="$PATH:$HOME/.yarn/bin"
 source <(kubectl completion zsh)
 
 alias k=kubectl
-complete -F __start_kubectl k # apply autocomplete to the `k` alias
+source <(kubectl completion zsh | sed s/kubectl/k/g)
+# complete -F __start_kubectl k # apply autocomplete to the `k` alias
 
 # Virtual Env Setup
 # export WORKON_HOME=~/.envs
@@ -141,3 +142,12 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Gnu sed
+# GNU "sed" has been installed as "gsed".
+# If you need to use it as "sed", you can add a "gnubin" directory
+# to your PATH from your bashrc like:
+
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+

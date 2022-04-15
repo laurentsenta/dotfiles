@@ -1,6 +1,6 @@
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
-# nvm install v12
+nvm install v12 v14 v16
 
 if test ! $(which spoof)
 then

@@ -1,4 +1,4 @@
-# if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
+if-shell 'test "$(uname)" = "Darwin"' 'source ~/.tmux-osx.conf'
 
 # Prefix with C-a / CapsLock - a
 set -g prefix C-a
@@ -12,7 +12,6 @@ set-option -g history-limit 15000
 # set -g default-shell /bin/zsh
 # Sierra copy fix from http://stackoverflow.com/a/39741226/843194
 set -g default-shell $SHELL
-set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
 # Mouse mode
 set -g mouse on

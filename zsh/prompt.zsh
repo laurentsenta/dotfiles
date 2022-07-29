@@ -108,12 +108,19 @@ function vi_mode_prompt_info() {
   echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
 }
 
+function the_host() {
+	if [ "$(uname)" != "Darwin" ]; then
+		echo "%{$fg_bold[yellow]%}$HOST%{$reset_color%}:"
+	else
+		echo ""
+	fi
+}
 
 # Prompt
 # ------
 
 # export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
-export PROMPT=$'\nin $(directory_path) $(git_dirty)$(need_push)\n$(vi_mode_prompt_info)› '
+export PROMPT=$'\nin $(the_host)$(directory_path) $(git_dirty)$(need_push)\n$(vi_mode_prompt_info)› '
 set_prompt () {
   export RPROMPT="$(node_version) %{$fg_bold[cyan]%}$smiley $(todo)%{$reset_color%}"
 }

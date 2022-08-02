@@ -1,5 +1,8 @@
 brew install zsh autojump ack zsh-syntax-highlighting zsh-autosuggestions fd tree fzf htop
 
+brew tap homebrew/cask-fonts
+brew install font-fira-code --cask
+
 # To install useful key bindings and fuzzy completion:
 $(brew --prefix)/opt/fzf/install
 

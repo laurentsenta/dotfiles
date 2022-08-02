@@ -4,8 +4,67 @@
 #
 # The original idea (and a couple settings) were grabbed from:
 #   https://github.com/mathiasbynens/dotfiles/blob/master/.macos
-#
+#  
 # Run ./set-defaults.sh and you'll be good to go.
+
+# Disable the sound effects on boot
+sudo nvram SystemAudioVolume=" "
+
+# Disable transparency in the menu bar and elsewhere on Yosemite
+# defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Set highlight color to green
+defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+
+# Set sidebar icon size to medium
+defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
+
+# Disable the over-the-top focus ring animation
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+
+# Adjust toolbar title rollover delay
+defaults write NSGlobalDomain NSToolbarTitleViewRolloverDelay -float 0
+
+# Disable smooth scrolling
+# (Uncomment if you’re on an older Mac that messes up the animation)
+#defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+
+# Increase window resize speed for Cocoa applications
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Display ASCII control characters using caret notation in standard text views
+# Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
+
+# Disable Resume system-wide
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
+# Disable automatic termination of inactive apps
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+
+# Disable the crash reporter
+#defaults write com.apple.CrashReporter DialogType -string "none"
+
+# Fix for the ancient UTF-8 bug in QuickLook (https://mths.be/bbo)
+# Commented out, as this is known to cause problems in various Adobe apps :(
+# See https://github.com/mathiasbynens/dotfiles/issues/237
+#echo "0x08000100:0" > ~/.CFUserTextEncoding
+
+# Disable Notification Center and remove the menu bar icon
+#launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
+# Disable auto-correct
+#defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Stop iTunes from responding to the keyboard media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
@@ -29,6 +88,8 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 200
 # Set the Finder prefs for showing a few different volumes on the Desktop.
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+# defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+# defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Run the screensaver if we're in the bottom-left hot corner.
 # defaults write com.apple.dock wvous-bl-corner -int 5
@@ -167,6 +228,9 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
+# Show the ~/Library folder
+# chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+
 # Disable the warning before emptying the Trash
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
@@ -261,6 +325,68 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+###############################################################################
+# Messages                                                                    #
+###############################################################################
+
+# Disable automatic emoji substitution (i.e. use plain text smileys)
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+
+# Disable smart quotes as it’s annoying for messages that contain code
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
+
+# Disable continuous spell checking
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+
+###############################################################################
+# Spotlight                                                                   #
+###############################################################################
+
+# Change indexing order and disable some search results
+# Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
+# 	MENU_DEFINITION
+# 	MENU_CONVERSION
+# 	MENU_EXPRESSION
+# 	MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
+# 	MENU_WEBSEARCH             (send search queries to Apple)
+# 	MENU_OTHER
+defaults write com.apple.spotlight orderedItems -array \
+	'{"enabled" = 1;"name" = "APPLICATIONS";}' \
+	'{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
+	'{"enabled" = 1;"name" = "DIRECTORIES";}' \
+	'{"enabled" = 1;"name" = "PDF";}' \
+	'{"enabled" = 0;"name" = "FONTS";}' \
+	'{"enabled" = 0;"name" = "DOCUMENTS";}' \
+	'{"enabled" = 0;"name" = "MESSAGES";}' \
+	'{"enabled" = 0;"name" = "CONTACT";}' \
+	'{"enabled" = 0;"name" = "EVENT_TODO";}' \
+	'{"enabled" = 0;"name" = "IMAGES";}' \
+	'{"enabled" = 0;"name" = "BOOKMARKS";}' \
+	'{"enabled" = 0;"name" = "MUSIC";}' \
+	'{"enabled" = 0;"name" = "MOVIES";}' \
+	'{"enabled" = 0;"name" = "PRESENTATIONS";}' \
+	'{"enabled" = 0;"name" = "SPREADSHEETS";}' \
+	'{"enabled" = 0;"name" = "SOURCE";}' \
+	'{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
+	'{"enabled" = 0;"name" = "MENU_OTHER";}' \
+	'{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
+	'{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
+	'{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
+	'{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
+
+###############################################################################
+# Mac App Store                                                               #
+###############################################################################
+
+# Enable the WebKit Developer Tools in the Mac App Store
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+
+# Enable Debug Menu in the Mac App Store
+defaults write com.apple.appstore ShowDebugMenu -bool true
+
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
 
 ###############################################################################
 # Messages                                                                    #

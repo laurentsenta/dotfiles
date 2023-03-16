@@ -85,10 +85,10 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # kubernetes and kubectl
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 
-alias k=kubectl
-source <(kubectl completion zsh | sed s/kubectl/k/g)
+# alias k=kubectl
+# source <(kubectl completion zsh | sed s/kubectl/k/g)
 # complete -F __start_kubectl k # apply autocomplete to the `k` alias
 
 # Virtual Env Setup

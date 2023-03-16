@@ -11,4 +11,4 @@ fi
 echo "› sudo softwareupdate -i -a"
 sudo softwareupdate -i -a
 
-pip3 install virtualenvwrapper
+# pip3 install virtualenvwrapper

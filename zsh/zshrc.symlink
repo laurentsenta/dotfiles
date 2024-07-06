@@ -82,64 +82,13 @@ export PATH="$PATH:$HOME/.yarn/bin"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# kubernetes and kubectl
-# source <(kubectl completion zsh)
-
-# alias k=kubectl
-# source <(kubectl completion zsh | sed s/kubectl/k/g)
-# complete -F __start_kubectl k # apply autocomplete to the `k` alias
-
-# Virtual Env Setup
-# export WORKON_HOME=~/.envs
-# export VIRTUALENVWRAPPER_PYTHON=`which python3`
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# https://stackoverflow.com/questions/45577194/failed-to-activate-virtualenv-with-pyenv/45578839
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init -)"
-# fi
-
-# # building ssl with python
-# export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
-
-# # heroku autocomplete setup
-# HEROKU_AC_ZSH_SETUP_PATH=/Users/laurent/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-
 # languages config (necessary for mosh compat with servers)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
-# Android
-# export ANDROID_HOME=$HOME/Library/Android/sdk
-# export PATH=$PATH:$ANDROID_HOME/emulator
-# export PATH=$PATH:$ANDROID_HOME/tools
-# export PATH=$PATH:$ANDROID_HOME/tools/bin
-# export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Python & PyEnv
-
-# export PATH="/usr/local/opt/openssl@3/bin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
-# export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
-# 
-# export LDFLAGS="-L/usr/local/opt/zlib/lib"
-# export CPPFLAGS="-I/usr/local/opt/zlib/include"
-# export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 # Gnu sed
 # GNU "sed" has been installed as "gsed".
@@ -148,3 +97,39 @@ export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/laurent/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/laurent/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/laurent/miniconda3/etc/profile.d/conda.sh" else export PATH="/Users/laurent/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# Created by `pipx` on 2024-01-19 07:45:33
+export PATH="$PATH:/Users/laurent/.local/bin"
+
+# Enable completion for pipx:
+eval "$(register-python-argcomplete pipx)"
+
+# Load rbenv automatically
+eval "$(rbenv init - zsh)"
+
+# Android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# direnv
+eval "$(direnv hook zsh)"
+

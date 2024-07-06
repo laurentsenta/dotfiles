@@ -3,7 +3,7 @@ alias reload!='. ~/.zshrc'
 alias cls='clear' # Good 'ol Clear Screen command
 
 function cdls() {
-  \cd $@ && ls
+	\cd $@ && ls
 }
 alias cd=cdls
 
@@ -15,4 +15,4 @@ alias diff=colordiff
 
 alias g=git
 
-alias chk=~/dev/apps/chk/start.sh
+# alias chk=~/dev/apps/chk/start.sh

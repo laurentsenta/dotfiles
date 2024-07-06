@@ -1,0 +1,58 @@
+#! /usr/bin/env python3
+# Setup with:
+# chmod +x bin/archivist
+# crontab -e
+# 0 */3 * * * /Users/laurent/.dotfiles/bin/archivist
+import os
+import shutil
+from datetime import datetime, timedelta
+
+# Get the current and previous month folder names
+current_month = datetime.now().strftime("%Y-%m")
+current_month_year = datetime.now().strftime("%Y")
+
+previous_month = (datetime.now().replace(day=1) - timedelta(days=1)).strftime("%Y-%m")
+previous_month_year = (datetime.now().replace(day=1) - timedelta(days=1)).strftime("%Y")
+
+# Define paths
+desktop_path = os.path.expanduser("~/Desktop")
+archive_base_path = os.path.join(os.path.expanduser("~/Dropbox/4 - Archives"), current_month_year)
+dev_archive_path = os.path.expanduser("~/dev/archives")
+
+
+# Paths for current and previous months
+desktop_current_month_folder = os.path.join(desktop_path, current_month)
+desktop_previous_month_folder = os.path.join(desktop_path, previous_month)
+archive_previous_month_folder = os.path.join(archive_base_path, previous_month)
+dev_archive_previous_month_folder = os.path.join(archive_previous_month_folder, "dev")
+
+def create_folder_if_not_exists(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+def copy_or_merge_folder(src, dst):
+    if os.path.exists(src):
+        if not os.path.exists(dst):
+            shutil.move(src, dst)
+        else:
+            shutil.copytree(src, dst, dirs_exist_ok=True)
+            shutil.rmtree(src)  # Remove the source directory after copying
+
+def main():
+    # Create the archive base folder if it does not exist
+    create_folder_if_not_exists(archive_base_path)
+
+    # Create the current month folder if it does not exist
+    create_folder_if_not_exists(desktop_current_month_folder)
+    
+    # Copy or merge the previous month folder to the archive
+    copy_or_merge_folder(desktop_previous_month_folder, archive_previous_month_folder)
+    
+    # Copy or merge the dev archives to the dev folder in the archive
+    copy_or_merge_folder(dev_archive_path, dev_archive_previous_month_folder)
+
+    # create dev archive folder if it does not exist
+    create_folder_if_not_exists(dev_archive_path)
+
+if __name__ == "__main__":
+    main()

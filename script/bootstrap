@@ -132,7 +132,16 @@ install_dotfiles () {
 
   for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
+    local filename=$(basename "${src%.*}")
+    if [[ "$filename" == *--* ]]; then
+      # Handle nested path: claude--CLAUDE.md -> .claude/CLAUDE.md
+      dst="$HOME/.${filename//--/\/}"
+      # Create parent directory if it doesn't exist
+      mkdir -p "$(dirname "$dst")"
+    else
+      # Handle regular path: gitconfig -> .gitconfig
+      dst="$HOME/.$filename"
+    fi
     link_file "$src" "$dst"
   done
 }

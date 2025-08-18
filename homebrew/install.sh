@@ -17,8 +17,8 @@ then
   elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
   then
     echo skipped;
+    exit 0;
     # ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-    echo skipped;
   fi
 
 fi

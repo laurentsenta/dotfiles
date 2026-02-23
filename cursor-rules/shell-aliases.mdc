@@ -1,0 +1,9 @@
+---
+description: Shell alias conventions for this user's environment
+alwaysApply: true
+---
+
+# Shell Aliases in default Shell
+
+- `rm` is aliased to move files to `~/trash` instead of deleting them. Never use `rm -rf` or `rm -f` — just use `rm`.
+- `cd` is aliased to also run `ls` after changing directory.

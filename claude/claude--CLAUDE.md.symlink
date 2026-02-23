@@ -45,3 +45,4 @@ When context gets long: re-read this file, summarize progress in PROGRESS.md, do
 
 - If the project contains AGENT.md files, read them
 - @~/.claude/local.md for local overrides
+- @~/.cursor/rules/shell-aliases.mdc for shell alias conventions

@@ -119,3 +119,6 @@ if [ -f '/Users/laurent/dev/lifi/jumper-backend/google-cloud-sdk/completion.zsh.
 
 # opencode
 export PATH=/Users/laurent/.opencode/bin:$PATH
+
+# OpenClaw Completion
+source "/Users/laurent/.openclaw/completions/openclaw.zsh"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 case "$(uname -s)" in
 	Darwin)
-		brew install zsh autojump ack zsh-syntax-highlighting zsh-autosuggestions fd tree fzf htop
+		brew install zsh autojump ack zsh-syntax-highlighting zsh-autosuggestions fd tree fzf htop direnv
 		# brew tap homebrew/cask-fonts
 		brew install font-fira-code --cask
 		
